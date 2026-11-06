@@ -1,0 +1,5110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prince Verma — The Developer's Domain | AI & ML Portfolio</title>
+  <meta name="description" content="Personal portfolio of Prince Verma, a First-Year B.Tech Computer Science Engineering student specializing in AI & ML at Newton School of Technology. Turning curiosity into code, and ideas into reality.">
+  <meta name="keywords" content="Prince Verma, Portfolio, AI, Machine Learning, Newton School of Technology, Computer Science, Web Developer, Three.js, Anime Portfolio">
+  <meta name="author" content="Prince Verma">
+  <meta name="theme-color" content="#080812">
+
+  <!-- Preconnect & Google Fonts with system fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;700;900&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      --bg-primary: #080812;
+      --bg-secondary: #151426;
+      --bg-card: rgba(21, 20, 38, 0.75);
+      --bg-card-hover: rgba(30, 27, 58, 0.9);
+      --bg-glass: rgba(13, 12, 26, 0.7);
+      
+      --purple: #8B5CF6;
+      --purple-light: #A78BFA;
+      --purple-dark: #6D28D9;
+      --purple-glow: rgba(139, 92, 246, 0.45);
+      
+      --electric-blue: #38BDF8;
+      --blue-light: #7DD3FC;
+      --blue-glow: rgba(56, 189, 248, 0.45);
+      
+      --sunset-orange: #FF8A5B;
+      --sunset-glow: rgba(255, 138, 91, 0.4);
+      
+      --sakura-pink: #F9A8D4;
+      --sakura-glow: rgba(249, 168, 212, 0.35);
+      
+      --text-white: #F8FAFC;
+      --text-gray: #94A3B8;
+      --text-muted: #64748B;
+      
+      --border-subtle: rgba(139, 92, 246, 0.2);
+      --border-glow: rgba(56, 189, 248, 0.4);
+      
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-tech: 'Orbitron', monospace;
+      --font-jp: 'Noto Sans JP', sans-serif;
+
+      --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--purple), var(--electric-blue));
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, var(--electric-blue), var(--sunset-orange));
+    }
+
+    /* Selection */
+    ::selection {
+      background: var(--purple);
+      color: #FFFFFF;
+    }
+
+    /* Subtle Scanline Overlay for Cyber-Anime Aesthetic */
+    .scanlines-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+      background: linear-gradient(rgba(18, 16, 38, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      opacity: 0.15;
+    }
+
+    /* ==========================================================================
+       CINEMATIC OPENING INTRO (DOMAIN EXPANSION)
+       ========================================================================== */
+    #cinematic-intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #05050B;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      overflow: hidden;
+    }
+
+    #cinematic-intro.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-canvas-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.6;
+      z-index: 1;
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 850px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Japanese Domain Expansion Seal Ring */
+    .domain-seal-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .seal-ring-outer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px dashed var(--purple);
+      border-radius: 50%;
+      animation: spinSeal 14s linear infinite;
+      box-shadow: 0 0 25px var(--purple-glow), inset 0 0 20px var(--purple-glow);
+    }
+
+    .seal-ring-inner {
+      position: absolute;
+      width: 78%;
+      height: 78%;
+      border: 1.5px solid var(--electric-blue);
+      border-radius: 50%;
+      animation: spinSealReverse 10s linear infinite;
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+
+    .seal-kanji {
+      font-family: var(--font-jp);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--text-white);
+      text-shadow: 0 0 15px var(--purple), 0 0 30px var(--electric-blue);
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
+
+    .intro-quote {
+      font-family: var(--font-tech);
+      font-size: 1rem;
+      letter-spacing: 0.35em;
+      color: var(--electric-blue);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 0 12px var(--blue-glow);
+      opacity: 0;
+      transform: translateY(15px);
+      animation: introFadeUp 0.8s 0.4s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .intro-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF 20%, var(--purple-light) 60%, var(--electric-blue) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: introFadeUp 0.8s 0.7s forwards cubic-bezier(0.16, 1, 0.3, 1);
+      filter: drop-shadow(0 0 25px rgba(139, 92, 246, 0.4));
+    }
+
+    .intro-subtitle {
+      font-family: var(--font-tech);
+      font-size: 0.95rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.2em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: introFadeUp 0.8s 1s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .intro-tagline {
+      font-size: 1.15rem;
+      color: var(--text-gray);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: introFadeUp 0.8s 1.2s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .intro-buttons {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(15px);
+      animation: introFadeUp 0.8s 1.4s forwards cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-domain {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.85rem 2rem;
+      font-family: var(--font-tech);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+      border: 1px solid var(--purple-light);
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 0 20px var(--purple-glow);
+      transition: var(--transition-smooth);
+      overflow: hidden;
+    }
+
+    .btn-domain::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transition: 0.5s;
+    }
+
+    .btn-domain:hover::before {
+      left: 100%;
+    }
+
+    .btn-domain:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.7), 0 0 15px var(--electric-blue);
+      border-color: var(--electric-blue);
+    }
+
+    .btn-domain-alt {
+      background: rgba(21, 20, 38, 0.8);
+      border: 1px solid var(--electric-blue);
+      color: var(--electric-blue);
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+
+    .btn-domain-alt:hover {
+      background: rgba(56, 189, 248, 0.15);
+      color: #FFFFFF;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .btn-skip {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-gray);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      z-index: 10;
+    }
+
+    .btn-skip:hover {
+      color: var(--text-white);
+      border-color: var(--purple-light);
+      background: rgba(139, 92, 246, 0.15);
+    }
+
+    @keyframes spinSeal {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinSealReverse {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.08); filter: brightness(1.3); }
+    }
+    @keyframes introFadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       GLOBAL 3D CANVAS & BACKGROUND
+       ========================================================================== */
+    #webgl-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #webgl-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      pointer-events: auto;
+    }
+
+    /* Canvas 2D Fallback for older browsers or WebGL disabled */
+    #canvas-fallback {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      display: none;
+      pointer-events: none;
+    }
+
+    /* Foreground Content Wrapper */
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ==========================================================================
+       FLOATING GLASSMORPHISM NAVIGATION
+       ========================================================================== */
+    .navbar {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 2.5rem);
+      max-width: 1320px;
+      height: 64px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(139, 92, 246, 0.1);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .brand-crest {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+      border: 1px solid var(--electric-blue);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-tech);
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #FFFFFF;
+      box-shadow: 0 0 12px var(--purple-glow);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      color: var(--text-white);
+    }
+
+    .brand-sub {
+      font-family: var(--font-jp);
+      font-size: 0.65rem;
+      color: var(--electric-blue);
+      letter-spacing: 0.1em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-gray);
+      text-decoration: none;
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-white);
+      background: rgba(139, 92, 246, 0.12);
+    }
+
+    .nav-link.active {
+      color: var(--electric-blue);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 2px;
+      background: var(--electric-blue);
+      border-radius: 2px;
+      box-shadow: 0 0 8px var(--electric-blue);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Sound Synthesizer Toggle */
+    .sound-toggle-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-gray);
+      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .sound-toggle-btn:hover {
+      color: var(--purple-light);
+      border-color: var(--purple);
+      background: rgba(139, 92, 246, 0.15);
+    }
+
+    .sound-toggle-btn.playing {
+      color: var(--electric-blue);
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 10px var(--blue-glow);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      width: 38px;
+      height: 38px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .hamburger-line {
+      width: 22px;
+      height: 2px;
+      background: var(--text-white);
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    /* Mobile Drawer */
+    .mobile-menu {
+      position: fixed;
+      top: 5rem;
+      left: 1.25rem;
+      right: 1.25rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--purple);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: var(--transition-smooth);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px var(--purple-glow);
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-nav-link {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-gray);
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-nav-link:hover, .mobile-nav-link.active {
+      color: #FFFFFF;
+      background: rgba(139, 92, 246, 0.2);
+    }
+
+    /* ==========================================================================
+       SECTION COMMON STYLES & WRAPPERS
+       ========================================================================== */
+    section {
+      position: relative;
+      padding: 6.5rem 1.5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      z-index: 10;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-tag {
+      font-family: var(--font-tech);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--electric-blue);
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      padding: 0.3rem 0.85rem;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 4px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-white);
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-gray);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .jp-watermark {
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-jp);
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 900;
+      color: rgba(139, 92, 246, 0.04);
+      user-select: none;
+      pointer-events: none;
+      z-index: -1;
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      padding-bottom: 3rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.5rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.4rem 1rem;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid var(--purple);
+      border-radius: 20px;
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--purple-light);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--electric-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--electric-blue);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .hero-name {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 7vw, 5.25rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #FFFFFF 10%, var(--purple-light) 50%, var(--electric-blue) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.3));
+    }
+
+    .hero-role {
+      font-family: var(--font-tech);
+      font-size: clamp(1rem, 2.2vw, 1.45rem);
+      font-weight: 600;
+      color: var(--sunset-orange);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-role-jp {
+      font-family: var(--font-jp);
+      font-size: 0.85rem;
+      color: var(--sakura-pink);
+      padding: 0.15rem 0.5rem;
+      background: rgba(249, 168, 212, 0.1);
+      border: 1px solid rgba(249, 168, 212, 0.3);
+      border-radius: 4px;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-gray);
+      margin-bottom: 2.25rem;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.6rem;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+      color: #FFFFFF;
+      border: 1px solid var(--purple-light);
+      box-shadow: 0 0 20px var(--purple-glow);
+    }
+
+    .btn-hero-primary:hover {
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.7), 0 0 15px var(--electric-blue);
+      transform: translateY(-3px);
+      border-color: var(--electric-blue);
+    }
+
+    .btn-hero-secondary {
+      background: rgba(21, 20, 38, 0.7);
+      color: var(--text-white);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--electric-blue);
+      color: var(--electric-blue);
+      box-shadow: 0 0 15px var(--blue-glow);
+      transform: translateY(-3px);
+    }
+
+    .btn-hero-outline {
+      background: transparent;
+      color: var(--sunset-orange);
+      border: 1px solid var(--sunset-orange);
+    }
+
+    .btn-hero-outline:hover {
+      background: rgba(255, 138, 91, 0.15);
+      box-shadow: 0 0 20px var(--sunset-glow);
+      transform: translateY(-3px);
+    }
+
+    /* Hero Right 3D Viewport Indicator Card */
+    .hero-scene-card {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: rgba(21, 20, 38, 0.4);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(139, 92, 246, 0.15);
+      backdrop-filter: blur(8px);
+      transition: var(--transition-smooth);
+    }
+
+    .hero-scene-card:hover {
+      border-color: var(--purple-light);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px var(--purple-glow);
+    }
+
+    .character-hud-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(8, 8, 18, 0.8);
+      border: 1px solid var(--electric-blue);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--text-white);
+      backdrop-filter: blur(8px);
+      margin-bottom: 0.75rem;
+      width: fit-content;
+    }
+
+    .hud-spec {
+      font-size: 0.75rem;
+      color: var(--text-gray);
+      line-height: 1.4;
+    }
+
+    .scroll-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+    }
+
+    .scroll-mouse {
+      width: 20px;
+      height: 32px;
+      border: 2px solid var(--purple-light);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .scroll-wheel {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 6px;
+      background: var(--electric-blue);
+      border-radius: 2px;
+      animation: scrollAnim 1.8s infinite;
+    }
+
+    @keyframes scrollAnim {
+      0% { top: 5px; opacity: 1; }
+      100% { top: 16px; opacity: 0; }
+    }
+
+    /* ==========================================================================
+       ABOUT SECTION: "THE STORY BEGINS HERE"
+       ========================================================================== */
+    .about-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: 2.5rem;
+    }
+
+    .anime-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 2rem 1.75rem;
+      transition: var(--transition-smooth);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .anime-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--purple), var(--electric-blue));
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .anime-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--purple-light);
+      background: var(--bg-card-hover);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--purple-glow);
+    }
+
+    .anime-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-badge-role {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--sunset-orange);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-desc {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag-pill {
+      font-family: var(--font-tech);
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 4px;
+      color: var(--purple-light);
+    }
+
+    /* Japanese Corner Accent */
+    .jp-corner {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-color: var(--electric-blue);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .jp-corner-tl { top: 8px; left: 8px; border-top: 2px solid; border-left: 2px solid; }
+    .jp-corner-br { bottom: 8px; right: 8px; border-bottom: 2px solid; border-right: 2px solid; }
+
+    /* ==========================================================================
+       SKILLS SECTION: "MY TECHNIQUE ARSENAL"
+       ========================================================================== */
+    .arsenal-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .arsenal-category-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.5rem;
+    }
+
+    .arsenal-category-title span {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--electric-blue);
+      letter-spacing: 0.1em;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(8px);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--electric-blue);
+      background: var(--bg-card-hover);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px var(--blue-glow);
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .skill-name {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .skill-affinity {
+      font-family: var(--font-jp);
+      font-size: 0.75rem;
+      color: var(--purple-light);
+      padding: 0.1rem 0.4rem;
+      background: rgba(139, 92, 246, 0.15);
+      border-radius: 4px;
+    }
+
+    .skill-level-label {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.05em;
+    }
+
+    .skill-desc {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       PROJECTS SECTION: "MISSIONS COMPLETED"
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(12px);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--purple-light);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px var(--purple-glow);
+    }
+
+    .project-visual {
+      position: relative;
+      height: 220px;
+      width: 100%;
+      background: #0D0C1D;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-canvas-preview {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .project-overlay-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--text-white);
+      background: rgba(8, 8, 18, 0.85);
+      border: 1px solid var(--electric-blue);
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      backdrop-filter: blur(6px);
+      z-index: 2;
+    }
+
+    .project-content {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-category {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    .project-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-desc {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .project-features-list {
+      list-style: none;
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .project-features-list li {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-features-list li::before {
+      content: '⚡';
+      font-size: 0.75rem;
+      color: var(--electric-blue);
+    }
+
+    .project-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tech-pill {
+      font-family: var(--font-tech);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
+      color: var(--text-white);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn-project {
+      flex: 1;
+      padding: 0.65rem 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-project-primary {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid var(--purple);
+      color: var(--purple-light);
+    }
+
+    .btn-project-primary:hover {
+      background: var(--purple);
+      color: #FFFFFF;
+      box-shadow: 0 0 15px var(--purple-glow);
+    }
+
+    .btn-project-alt {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--electric-blue);
+      color: var(--electric-blue);
+    }
+
+    .btn-project-alt:hover {
+      background: var(--electric-blue);
+      color: #080812;
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+
+    /* ==========================================================================
+       AI/ML JOURNEY: "EXPLORING THE INTELLIGENCE"
+       ========================================================================== */
+    .ai-lab-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 2.5rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .ai-visual-box {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      background: #080814;
+      border: 1px solid var(--border-glow);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #neural-net-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .ai-visual-hud {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      background: rgba(8, 8, 18, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      color: var(--electric-blue);
+    }
+
+    .ai-info-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .ai-disclaimer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--sunset-orange);
+      background: rgba(255, 138, 91, 0.1);
+      border: 1px solid rgba(255, 138, 91, 0.3);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      width: fit-content;
+    }
+
+    .ai-narrative {
+      font-size: 1.05rem;
+      color: var(--text-gray);
+      line-height: 1.7;
+    }
+
+    .learning-pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .pillar-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.85rem;
+      transition: var(--transition-smooth);
+    }
+
+    .pillar-card:hover {
+      border-color: var(--electric-blue);
+      background: rgba(56, 189, 248, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .pillar-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.25rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ==========================================================================
+       EDUCATION SECTION: "THE ACADEMY"
+       ========================================================================== */
+    .academy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .academy-institution-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 6rem;
+    }
+
+    .nst-badge {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--purple-light);
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid var(--purple);
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .institution-name {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 0.35rem;
+    }
+
+    .university-name {
+      font-size: 1rem;
+      color: var(--sunset-orange);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .degree-specs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.25rem;
+    }
+
+    .degree-spec-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .spec-key {
+      color: var(--text-muted);
+      font-family: var(--font-tech);
+    }
+
+    .spec-val {
+      color: var(--text-white);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Vertical Timeline */
+    .timeline-container {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 7px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--purple), var(--electric-blue), var(--sunset-orange));
+    }
+
+    .timeline-node {
+      position: relative;
+      margin-bottom: 2.25rem;
+    }
+
+    .timeline-node:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2rem;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      background: var(--bg-primary);
+      border: 3px solid var(--electric-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--blue-glow);
+      transition: var(--transition-smooth);
+    }
+
+    .timeline-node:hover .timeline-dot {
+      background: var(--electric-blue);
+      transform: scale(1.3);
+    }
+
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .timeline-card:hover {
+      border-color: var(--purple-light);
+      transform: translateX(6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .timeline-phase {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-heading {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       ACHIEVEMENTS SECTION: "ACHIEVEMENTS UNLOCKED"
+       ========================================================================== */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .achievement-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(8px);
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--purple-light);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--purple-glow);
+    }
+
+    .achievement-badge-seal {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(56, 189, 248, 0.2));
+      border: 1px solid var(--electric-blue);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+
+    .achievement-category {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.25rem;
+    }
+
+    .achievement-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.5rem;
+    }
+
+    .achievement-desc {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+
+    .achievement-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-tech);
+      font-size: 0.7rem;
+      color: var(--purple-light);
+      margin-top: 1rem;
+      padding: 0.2rem 0.5rem;
+      background: rgba(139, 92, 246, 0.1);
+      border-radius: 4px;
+    }
+
+    .achievement-placeholder-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       BEYOND CODING SECTION: ONLY MUSIC & CREATIVITY
+       ========================================================================== */
+    .beyond-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .beyond-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: var(--transition-smooth);
+    }
+
+    .beyond-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--purple-light);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--purple-glow);
+    }
+
+    .beyond-tag {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+
+    .beyond-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .beyond-desc {
+      font-size: 1rem;
+      color: var(--text-gray);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Interactive Anime Music Equalizer Canvas */
+    .music-visual-container {
+      width: 100%;
+      height: 140px;
+      background: rgba(8, 8, 18, 0.9);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+
+    #equalizer-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Creativity Visual */
+    .creativity-visual-container {
+      width: 100%;
+      height: 140px;
+      background: rgba(8, 8, 18, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #creativity-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ==========================================================================
+       DEVELOPER TERMINAL SECTION: "ENTER THE DEVELOPER TERMINAL"
+       ========================================================================== */
+    .terminal-wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #080812;
+      border: 1px solid var(--purple);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px var(--purple-glow);
+      font-family: 'Space Mono', 'Consolas', monospace;
+    }
+
+    .terminal-header {
+      background: #111024;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #FF5F56; }
+    .dot-yellow { background: #FFBD2E; }
+    .dot-green { background: #27C93F; }
+
+    .terminal-title {
+      font-family: var(--font-tech);
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      letter-spacing: 0.05em;
+    }
+
+    .terminal-body {
+      padding: 1.5rem;
+      min-height: 380px;
+      max-height: 520px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .terminal-output-line {
+      word-break: break-word;
+    }
+
+    .term-green { color: #34D399; }
+    .term-blue { color: var(--electric-blue); }
+    .term-purple { color: var(--purple-light); }
+    .term-orange { color: var(--sunset-orange); }
+    .term-pink { color: var(--sakura-pink); }
+    .term-white { color: #FFFFFF; }
+    .term-muted { color: var(--text-muted); }
+
+    .terminal-input-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .terminal-prompt {
+      color: var(--electric-blue);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .terminal-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    /* Terminal Quick Command Pills */
+    .terminal-quick-pills {
+      padding: 0.75rem 1.5rem;
+      background: #0B0A1A;
+      border-top: 1px solid rgba(139, 92, 246, 0.15);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .pill-label {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .term-cmd-btn {
+      background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: var(--purple-light);
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .term-cmd-btn:hover {
+      background: var(--purple);
+      color: #FFFFFF;
+      box-shadow: 0 0 10px var(--purple-glow);
+    }
+
+    /* ==========================================================================
+       CONTACT SECTION: "LET'S CONNECT"
+       ========================================================================== */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 2.5rem;
+    }
+
+    .connect-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .connect-heading {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 0.75rem;
+    }
+
+    .connect-bio {
+      color: var(--text-gray);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .contact-links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text-white);
+      padding: 0.85rem 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      transition: var(--transition-smooth);
+    }
+
+    .contact-link-item:hover {
+      border-color: var(--electric-blue);
+      background: rgba(56, 189, 248, 0.1);
+      transform: translateX(5px);
+    }
+
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .contact-link-details {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .contact-link-title {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.1em;
+    }
+
+    .contact-link-val {
+      font-size: 0.95rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Contact Form (mailto-based functional workflow) */
+    .connect-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 2.25rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .form-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      color: var(--text-gray);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      background: rgba(8, 8, 18, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--purple-light);
+      box-shadow: 0 0 15px var(--purple-glow);
+    }
+
+    .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn-send-message {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+      border: 1px solid var(--purple-light);
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      box-shadow: 0 0 20px var(--purple-glow);
+      transition: var(--transition-smooth);
+    }
+
+    .btn-send-message:hover {
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.7), 0 0 15px var(--electric-blue);
+      border-color: var(--electric-blue);
+      transform: translateY(-2px);
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    /* ==========================================================================
+       RESUME & PROJECT MODALS
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 5, 11, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      background: var(--bg-secondary);
+      border: 1px solid var(--purple);
+      border-radius: 16px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.25rem;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px var(--purple-glow);
+      transform: scale(0.92);
+      transition: var(--transition-bounce);
+    }
+
+    .modal-overlay.active .modal-window {
+      transform: scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-gray);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      color: #FFFFFF;
+      background: var(--purple);
+      border-color: var(--purple-light);
+    }
+
+    /* Resume Dossier Styling */
+    .resume-header {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .resume-name {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+
+    .resume-title {
+      font-family: var(--font-tech);
+      font-size: 0.9rem;
+      color: var(--electric-blue);
+      margin-top: 0.25rem;
+    }
+
+    .resume-section {
+      margin-bottom: 1.25rem;
+    }
+
+    .resume-section-title {
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      color: var(--sunset-orange);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .resume-item {
+      margin-bottom: 0.75rem;
+    }
+
+    .resume-item-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-white);
+    }
+
+    .resume-item-sub {
+      font-size: 0.85rem;
+      color: var(--purple-light);
+    }
+
+    .resume-item-desc {
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      margin-top: 0.25rem;
+    }
+
+    .resume-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      background: #05050C;
+      border-top: 1px solid var(--border-subtle);
+      padding: 4rem 1.5rem 2.5rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFFFFF, var(--purple-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-statement {
+      font-family: var(--font-tech);
+      font-size: 0.95rem;
+      color: var(--electric-blue);
+      letter-spacing: 0.1em;
+      max-width: 750px;
+      line-height: 1.6;
+      text-shadow: 0 0 10px var(--blue-glow);
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-nav a:hover {
+      color: var(--purple-light);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-white);
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .footer-social-btn:hover {
+      background: var(--purple);
+      border-color: var(--purple-light);
+      box-shadow: 0 0 15px var(--purple-glow);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .back-to-top-btn {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid var(--purple);
+      color: var(--purple-light);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-tech);
+      font-size: 0.8rem;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .back-to-top-btn:hover {
+      background: var(--purple);
+      color: #FFFFFF;
+      box-shadow: 0 0 12px var(--purple-glow);
+    }
+
+    /* ==========================================================================
+       MEDIA QUERIES FOR RESPONSIVE DESIGN
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .hero-scene-card {
+        height: 380px;
+      }
+      .about-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .ai-lab-container {
+        grid-template-columns: 1fr;
+      }
+      .academy-grid {
+        grid-template-columns: 1fr;
+      }
+      .academy-institution-card {
+        position: static;
+      }
+      .beyond-grid {
+        grid-template-columns: 1fr;
+      }
+      .connect-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 4.5rem 1rem;
+      }
+      .hero-section {
+        padding-top: 5.5rem;
+      }
+      .hero-cta-group {
+        flex-direction: column;
+      }
+      .btn-hero {
+        width: 100%;
+      }
+      .learning-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Accessibility: Respect Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+
+  <!-- UMD Browser Builds of Three.js & GSAP (Fallback protected) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- Cyber-Anime Subtle Scanline Layer -->
+  <div class="scanlines-overlay"></div>
+
+  <!-- ==========================================================================
+       CINEMATIC ANIME OPENING EXPERIENCE (DOMAIN EXPANSION)
+       ========================================================================== -->
+  <div id="cinematic-intro">
+    <canvas id="intro-particles-canvas" class="intro-canvas-bg"></canvas>
+    <button id="skip-intro-btn" class="btn-skip" aria-label="Skip domain intro">SKIP INTRO ⏩</button>
+    
+    <div class="intro-content">
+      <div class="domain-seal-container">
+        <div class="seal-ring-outer"></div>
+        <div class="seal-ring-inner"></div>
+        <div class="seal-kanji">領域</div>
+      </div>
+      
+      <p class="intro-quote">"THE WORLD IS BUILT BY THOSE WHO CREATE."</p>
+      <h1 class="intro-title">PRINCE VERMA</h1>
+      <p class="intro-subtitle">CSE • ARTIFICIAL INTELLIGENCE & MACHINE LEARNING</p>
+      <p class="intro-tagline">"Turning curiosity into code, and ideas into reality."</p>
+      
+      <div class="intro-buttons">
+        <button id="enter-domain-btn" class="btn-domain">
+          <span>ENTER MY DOMAIN</span>
+          <span>⚡</span>
+        </button>
+        <button id="explore-work-btn" class="btn-domain btn-domain-alt">
+          <span>EXPLORE MY WORK</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       3D ANIME WORLD VIEWPORT (THREE.JS) + 2D CANVAS FALLBACK
+       ========================================================================== -->
+  <div id="webgl-container">
+    <canvas id="webgl-canvas"></canvas>
+    <canvas id="canvas-fallback"></canvas>
+  </div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT WRAPPER
+       ========================================================================== */
+  -->
+  <div class="content-wrapper">
+
+    <!-- FLOATING GLASSMORPHISM NAVBAR -->
+    <header>
+      <nav class="navbar" id="main-navbar" aria-label="Main Navigation">
+        <a href="#home" class="nav-brand" aria-label="Prince Verma Home">
+          <div class="brand-crest">PV</div>
+          <div class="brand-text">
+            <span class="brand-title">PRINCE VERMA</span>
+            <span class="brand-sub">創作家の領域 • DOMAIN</span>
+          </div>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#journey" class="nav-link">AI/ML Journey</a></li>
+          <li><a href="#education" class="nav-link">Education</a></li>
+          <li><a href="#achievements" class="nav-link">Achievements</a></li>
+          <li><a href="#beyond" class="nav-link">Beyond Coding</a></li>
+          <li><a href="#terminal" class="nav-link">Terminal</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Nav Right Actions -->
+        <div class="nav-actions">
+          <button id="sound-toggle" class="sound-toggle-btn" aria-label="Toggle Anime Ambient Sound" title="Toggle Ambient Synth Sound">
+            <span id="sound-icon">🔇</span>
+          </button>
+          
+          <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu Drawer -->
+      <div id="mobile-menu" class="mobile-menu" aria-label="Mobile Navigation">
+        <a href="#home" class="mobile-nav-link">Home <span>🏠</span></a>
+        <a href="#about" class="mobile-nav-link">About <span>📜</span></a>
+        <a href="#skills" class="mobile-nav-link">Technique Arsenal <span>⚡</span></a>
+        <a href="#projects" class="mobile-nav-link">Projects <span>💼</span></a>
+        <a href="#journey" class="mobile-nav-link">AI/ML Journey <span>🧠</span></a>
+        <a href="#education" class="mobile-nav-link">Education <span>🎓</span></a>
+        <a href="#achievements" class="mobile-nav-link">Achievements <span>🏆</span></a>
+        <a href="#beyond" class="mobile-nav-link">Beyond Coding <span>🎵</span></a>
+        <a href="#terminal" class="mobile-nav-link">Terminal <span>💻</span></a>
+        <a href="#contact" class="mobile-nav-link">Contact <span>✉️</span></a>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== -->
+    <section id="home" class="hero-section">
+      <div class="hero-grid">
+        <!-- Left Hero Content -->
+        <div class="hero-content">
+          <div class="hero-badge-pill">
+            <span class="pulse-dot"></span>
+            <span>DOMAIN EXPANSION: ACTIVE</span>
+          </div>
+
+          <h1 class="hero-name">PRINCE VERMA</h1>
+          
+          <div class="hero-role">
+            <span>First-Year B.Tech CSE Student</span>
+            <span class="hero-role-jp">人工知能 & 機械学習</span>
+          </div>
+          
+          <p class="hero-role" style="font-size: 1.1rem; color: var(--electric-blue); font-weight: 500; margin-top: -0.5rem;">
+            AI & ML Enthusiast | Developer | Creative Thinker
+          </p>
+
+          <p class="hero-desc">
+            "Hey! I'm Prince Verma, a first-year Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning at Newton School of Technology. I enjoy programming, building creative digital experiences, exploring new technologies, and developing innovative projects."
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn-hero btn-hero-primary">
+              <span>Explore My Projects</span>
+              <span>⚡</span>
+            </a>
+            <a href="#skills" class="btn-hero btn-hero-secondary">
+              <span>Discover My Skills</span>
+            </a>
+            <button id="open-resume-btn" class="btn-hero btn-hero-outline">
+              <span>Download Resume</span>
+              <span>📄</span>
+            </button>
+            <a href="#contact" class="btn-hero btn-hero-secondary">
+              <span>Contact Me</span>
+              <span>✉️</span>
+            </a>
+          </div>
+
+          <div class="scroll-indicator">
+            <div class="scroll-mouse">
+              <div class="scroll-wheel"></div>
+            </div>
+            <span>SCROLL TO ENTER THE DOMAIN</span>
+          </div>
+        </div>
+
+        <!-- Right Hero 3D Anime Character HUD Card -->
+        <div class="hero-scene-card" id="hero-card-interaction">
+          <div class="jp-corner jp-corner-tl"></div>
+          <div class="jp-corner jp-corner-br"></div>
+          
+          <div class="character-hud-badge">
+            <span style="color: var(--electric-blue);">●</span>
+            <span>CHARACTER: 3D ANIME DEVELOPER</span>
+          </div>
+
+          <p class="hud-spec">
+            <strong style="color: var(--text-white);">Atmosphere:</strong> Japanese Sunset Rooftop, Floating Sakura Petals, Supernatural Energy Flares.<br>
+            <strong style="color: var(--purple-light);">Technique:</strong> Turning curiosity into code, and ideas into reality.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT SECTION: "THE STORY BEGINS HERE"
+         ========================================================================== -->
+    <section id="about">
+      <div class="jp-watermark">物語の始まり</div>
+      <div class="section-header">
+        <span class="section-tag">Origin Story</span>
+        <h2 class="section-title">THE STORY BEGINS HERE</h2>
+        <p class="section-subtitle">"Every journey starts with curiosity."</p>
+      </div>
+
+      <div style="max-width: 860px; margin: 0 auto 3rem; text-align: center; color: var(--text-gray); font-size: 1.15rem; line-height: 1.8;">
+        Hello! I'm Prince Verma, a first-year B.Tech Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning at Newton School of Technology.<br><br>
+        I'm passionate about technology, programming, and creating things that people can interact with and enjoy. Currently, I'm strengthening my programming fundamentals while exploring web development, artificial intelligence, and machine learning. I believe every small project is an opportunity to learn something new.
+      </div>
+
+      <div class="about-cards-grid">
+        <!-- Card 1: THE STUDENT -->
+        <div class="anime-card">
+          <div class="jp-corner jp-corner-tl"></div>
+          <div class="jp-corner jp-corner-br"></div>
+          <p class="card-badge-role">FOUNDATION</p>
+          <h3 class="card-title">
+            <span>THE STUDENT</span>
+            <span style="color: var(--purple-light);">🎓</span>
+          </h3>
+          <p class="card-desc">
+            B.Tech Computer Science Engineering (Artificial Intelligence & Machine Learning) at <strong>Newton School of Technology</strong> in collaboration with <strong>Ajeenkya DY Patil University</strong>.
+          </p>
+          <div class="card-tag-list">
+            <span class="tag-pill">First-Year B.Tech</span>
+            <span class="tag-pill">CSE (AI & ML)</span>
+            <span class="tag-pill">Academic Rigor</span>
+          </div>
+        </div>
+
+        <!-- Card 2: THE DEVELOPER -->
+        <div class="anime-card">
+          <div class="jp-corner jp-corner-tl"></div>
+          <div class="jp-corner jp-corner-br"></div>
+          <p class="card-badge-role">EXECUTION</p>
+          <h3 class="card-title">
+            <span>THE DEVELOPER</span>
+            <span style="color: var(--electric-blue);">💻</span>
+          </h3>
+          <p class="card-desc">
+            Deeply interested in programming, interactive web development, creative coding, and crafting seamless digital experiences with clean architecture and modern tools.
+          </p>
+          <div class="card-tag-list">
+            <span class="tag-pill">Python</span>
+            <span class="tag-pill">JavaScript</span>
+            <span class="tag-pill">Three.js</span>
+            <span class="tag-pill">Creative Coding</span>
+          </div>
+        </div>
+
+        <!-- Card 3: THE DREAMER -->
+        <div class="anime-card">
+          <div class="jp-corner jp-corner-tl"></div>
+          <div class="jp-corner jp-corner-br"></div>
+          <p class="card-badge-role">VISION</p>
+          <h3 class="card-title">
+            <span>THE DREAMER</span>
+            <span style="color: var(--sunset-orange);">✨</span>
+          </h3>
+          <p class="card-desc">
+            Exploring artificial intelligence, machine learning, and innovative technologies to build systems that solve real-world problems and push digital boundaries.
+          </p>
+          <div class="card-tag-list">
+            <span class="tag-pill">Machine Learning</span>
+            <span class="tag-pill">Neural Networks</span>
+            <span class="tag-pill">Innovative Tech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SKILLS SECTION: "MY TECHNIQUE ARSENAL"
+         ========================================================================== -->
+    <section id="skills">
+      <div class="jp-watermark">術式体系</div>
+      <div class="section-header">
+        <span class="section-tag">Power System</span>
+        <h2 class="section-title">MY TECHNIQUE ARSENAL</h2>
+        <p class="section-subtitle">Presenting technical proficiencies as an awakened anime power system.</p>
+      </div>
+
+      <div class="arsenal-container">
+        <!-- Category 1: PROGRAMMING -->
+        <div class="arsenal-group">
+          <h3 class="arsenal-category-title">
+            <span>[ INHERENT TECHNIQUES ]</span>
+            PROGRAMMING LANGUAGES
+          </h3>
+          <div class="skills-grid">
+            <!-- Python -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Python</span>
+                <span class="skill-affinity">蛇術 • Core</span>
+              </div>
+              <span class="skill-level-label">PRIMARY LANGUAGE</span>
+              <p class="skill-desc">Data analysis fundamentals, object-oriented concepts, algorithm scripting, and AI explorations.</p>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">JavaScript</span>
+                <span class="skill-affinity">雷術 • Dynamic</span>
+              </div>
+              <span class="skill-level-label">DOM & INTERACTIVE WEB</span>
+              <p class="skill-desc">Client-side scripting, event handling, procedural canvas visuals, and asynchronous logic.</p>
+            </div>
+
+            <!-- HTML5 -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">HTML5</span>
+                <span class="skill-affinity">結界 • Structure</span>
+              </div>
+              <span class="skill-level-label">SEMANTIC FOUNDATION</span>
+              <p class="skill-desc">Semantic markup, accessible DOM structure, modern multimedia embedding, and canvas APIs.</p>
+            </div>
+
+            <!-- CSS3 -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">CSS3</span>
+                <span class="skill-affinity">幻影 • Aesthetics</span>
+              </div>
+              <span class="skill-level-label">RESPONSIVE & ANIMATIONS</span>
+              <p class="skill-desc">CSS Grid, Flexbox, glassmorphism, 3D transforms, keyframe sequences, and media queries.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 2: DEVELOPER TOOLS -->
+        <div class="arsenal-group">
+          <h3 class="arsenal-category-title">
+            <span>[ SACRED TOOLS ]</span>
+            DEVELOPER TOOLS & WORKFLOW
+          </h3>
+          <div class="skills-grid">
+            <!-- Git -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Git</span>
+                <span class="skill-affinity">時空 • History</span>
+              </div>
+              <span class="skill-level-label">VERSION CONTROL</span>
+              <p class="skill-desc">Branching workflows, commit versioning, code merging, and collaborative tracking.</p>
+            </div>
+
+            <!-- GitHub -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">GitHub</span>
+                <span class="skill-affinity">領域 • Forge</span>
+              </div>
+              <span class="skill-level-label">CODE REPOSITORY</span>
+              <p class="skill-desc">Repository management, open source contribution, documentation, and project hosting.</p>
+            </div>
+
+            <!-- CLI -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Command Line (CLI)</span>
+                <span class="skill-affinity">言霊 • Terminal</span>
+              </div>
+              <span class="skill-level-label">SYSTEM NAVIGATION</span>
+              <p class="skill-desc">Unix/POSIX navigation, shell scripting, process handling, and rapid developer automation.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 3: CURRENTLY EXPLORING -->
+        <div class="arsenal-group">
+          <h3 class="arsenal-category-title">
+            <span>[ EXPANDING DOMAIN ]</span>
+            CURRENTLY EXPLORING & LEARNING
+          </h3>
+          <div class="skills-grid">
+            <!-- AI -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Artificial Intelligence</span>
+                <span class="skill-affinity">知能 • Awakening</span>
+              </div>
+              <span class="skill-level-label">LEARNING PATH</span>
+              <p class="skill-desc">Studying theoretical foundations of intelligent agents and automated problem-solving.</p>
+            </div>
+
+            <!-- ML -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Machine Learning</span>
+                <span class="skill-affinity">学習 • Models</span>
+              </div>
+              <span class="skill-level-label">LEARNING PATH</span>
+              <p class="skill-desc">Exploring regression, classification, data preprocessing, and model concepts in Python.</p>
+            </div>
+
+            <!-- DSA -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Data Structures & Algo</span>
+                <span class="skill-affinity">論理 • Logic</span>
+              </div>
+              <span class="skill-level-label">ACTIVE STUDY</span>
+              <p class="skill-desc">Arrays, linked lists, recursion, sorting, search algorithms, and computational efficiency.</p>
+            </div>
+
+            <!-- Three.js -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Three.js & WebGL</span>
+                <span class="skill-affinity">次元 • 3D Realism</span>
+              </div>
+              <span class="skill-level-label">CREATIVE EXPLORATION</span>
+              <p class="skill-desc">3D geometry, shaders, particle systems, procedural textures, and camera parallax.</p>
+            </div>
+
+            <!-- Frontend Dev -->
+            <div class="skill-card">
+              <div class="skill-header">
+                <span class="skill-name">Frontend Architecture</span>
+                <span class="skill-affinity">構築 • UI/UX</span>
+              </div>
+              <span class="skill-level-label">CONTINUOUS PRACTICE</span>
+              <p class="skill-desc">Component-driven thinking, accessible web patterns, state management, and micro-interactions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PROJECTS SECTION: "MISSIONS COMPLETED"
+         ========================================================================== -->
+    <section id="projects">
+      <div class="jp-watermark">任務遂行</div>
+      <div class="section-header">
+        <span class="section-tag">Mission Log</span>
+        <h2 class="section-title">MISSIONS COMPLETED</h2>
+        <p class="section-subtitle">"Every project is another step in my journey."</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- PROJECT 01 — KISAN LABEL -->
+        <div class="project-card">
+          <div class="project-visual">
+            <canvas id="project-canvas-1" class="project-canvas-preview"></canvas>
+            <div class="project-overlay-badge">MISSION 01 • SOCIAL IMPACT</div>
+          </div>
+          <div class="project-content">
+            <span class="project-category">AI / Social Impact / Web Development</span>
+            <h3 class="project-title">KISAN LABEL</h3>
+            <p class="project-desc">
+              An AI-powered pesticide label reader designed to help Indian farmers understand complicated pesticide instructions in simpler, local-friendly language.
+            </p>
+            <ul class="project-features-list">
+              <li>Pesticide label reading and optical text parsing</li>
+              <li>Plain-language dosage and safety explanations</li>
+              <li>Farmer-friendly high-contrast interface</li>
+              <li>Accessible critical emergency warnings</li>
+            </ul>
+            <div class="project-tech-stack">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">AI Vision Concepts</span>
+              <span class="tech-pill">Web UI</span>
+              <span class="tech-pill">Social Impact</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn-project btn-project-primary open-project-detail-btn" data-project="kisan">
+                <span>View Mission Details</span>
+                <span>📋</span>
+              </button>
+              <a href="https://github.com/PrinceVerma44" target="_blank" rel="noopener noreferrer" class="btn-project btn-project-alt">
+                <span>GitHub Repo</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 02 — 3D BATTLEGROUNDS -->
+        <div class="project-card">
+          <div class="project-visual">
+            <canvas id="project-canvas-2" class="project-canvas-preview"></canvas>
+            <div class="project-overlay-badge">MISSION 02 • GAME DEV</div>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Game Development / Three.js</span>
+            <h3 class="project-title">3D BATTLEGROUNDS</h3>
+            <p class="project-desc">
+              A browser-based 3D battleground game concept inspired by multiplayer combat games, focusing on procedural arenas and responsive character dynamics.
+            </p>
+            <ul class="project-features-list">
+              <li>Procedural 3D arena environment</li>
+              <li>Smooth third-person character movement physics</li>
+              <li>Basic combat mechanics and hitbox detection</li>
+              <li>Interactive browser gameplay without plugins</li>
+            </ul>
+            <div class="project-tech-stack">
+              <span class="tech-pill">Three.js</span>
+              <span class="tech-pill">WebGL</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">3D Math</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn-project btn-project-primary open-project-detail-btn" data-project="battlegrounds">
+                <span>View Mission Details</span>
+                <span>📋</span>
+              </button>
+              <a href="https://github.com/PrinceVerma44" target="_blank" rel="noopener noreferrer" class="btn-project btn-project-alt">
+                <span>GitHub Repo</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 03 — PERSONAL PORTFOLIO -->
+        <div class="project-card">
+          <div class="project-visual">
+            <canvas id="project-canvas-3" class="project-canvas-preview"></canvas>
+            <div class="project-overlay-badge">MISSION 03 • DOMAIN EXPANSION</div>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Frontend Development / 3D Design</span>
+            <h3 class="project-title">THE DEVELOPER'S DOMAIN</h3>
+            <p class="project-desc">
+              An immersive anime-inspired developer portfolio built with HTML5, CSS3, Vanilla JavaScript, and Three.js, featuring procedural 3D environments and interactive HUDs.
+            </p>
+            <ul class="project-features-list">
+              <li>Procedural 3D Japanese sunset environment</li>
+              <li>Original anime 3D character with supernatural energy aura</li>
+              <li>Integrated interactive CLI developer terminal</li>
+              <li>100% self-contained direct file:// execution</li>
+            </ul>
+            <div class="project-tech-stack">
+              <span class="tech-pill">HTML5 / CSS3</span>
+              <span class="tech-pill">Vanilla JS</span>
+              <span class="tech-pill">Three.js r128</span>
+              <span class="tech-pill">GSAP</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn-project btn-project-primary open-project-detail-btn" data-project="portfolio">
+                <span>View Mission Details</span>
+                <span>📋</span>
+              </button>
+              <a href="#home" class="btn-project btn-project-alt">
+                <span>Live Domain</span>
+                <span>⚡</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 04 — FUTURE AI PROJECTS -->
+        <div class="project-card">
+          <div class="project-visual">
+            <canvas id="project-canvas-4" class="project-canvas-preview"></canvas>
+            <div class="project-overlay-badge">MISSION 04 • IN R&D</div>
+          </div>
+          <div class="project-content">
+            <span class="project-category">Artificial Intelligence / Machine Learning</span>
+            <h3 class="project-title">FUTURE AI EXPERIMENTS</h3>
+            <p class="project-desc">
+              Currently exploring and developing new ideas in artificial intelligence, neural architectures, assistive automation tools, and machine learning pipelines.
+            </p>
+            <ul class="project-features-list">
+              <li>Neural network visualization experiments</li>
+              <li>Student productivity & learning copilots</li>
+              <li>Computer vision assisted accessibility tools</li>
+              <li>Ongoing academic R&D at Newton School of Tech</li>
+            </ul>
+            <div class="project-tech-stack">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">Machine Learning</span>
+              <span class="tech-pill">Neural Nets</span>
+              <span class="tech-pill">Research</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn-project btn-project-primary open-project-detail-btn" data-project="futureai">
+                <span>View Research Scope</span>
+                <span>🔬</span>
+              </button>
+              <a href="https://github.com/PrinceVerma44" target="_blank" rel="noopener noreferrer" class="btn-project btn-project-alt">
+                <span>Follow Progress</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         AI/ML JOURNEY: "EXPLORING THE INTELLIGENCE"
+         ========================================================================== -->
+    <section id="journey">
+      <div class="jp-watermark">知能の探求</div>
+      <div class="section-header">
+        <span class="section-tag">Cognitive Horizon</span>
+        <h2 class="section-title">EXPLORING THE INTELLIGENCE</h2>
+        <p class="section-subtitle">A holographic look inside my ongoing AI/ML academic and practical learning journey.</p>
+      </div>
+
+      <div class="ai-lab-container">
+        <!-- Holographic Interactive Neural Canvas -->
+        <div class="ai-visual-box">
+          <canvas id="neural-net-canvas"></canvas>
+          <div class="ai-visual-hud">
+            <span>SYNAPTIC NODES: 24 ACTIVE</span>
+            <span>LEARNING PHASE: INITIATE</span>
+          </div>
+        </div>
+
+        <!-- Journey Description & Pillars -->
+        <div class="ai-info-content">
+          <div class="ai-disclaimer-badge">
+            <span>🌱</span>
+            <span>ACADEMIC FOCUS & ACTIVE LEARNING PATH</span>
+          </div>
+
+          <p class="ai-narrative">
+            "I'm beginning my journey into Artificial Intelligence and Machine Learning. My current focus is understanding programming fundamentals, learning how intelligent systems work, and gradually building practical projects."
+          </p>
+
+          <p style="color: var(--text-gray); font-size: 0.95rem;">
+            Rather than making premature claims of senior mastery, I view AI & ML as a lifelong discipline grounded in mathematics, computational logic, and empirical experimentation.
+          </p>
+
+          <div class="learning-pillars-grid">
+            <div class="pillar-card">
+              <div class="pillar-title">🐍 Python Programming</div>
+              <div class="pillar-desc">Object-oriented paradigms, NumPy data arrays, scripting & clean code structure.</div>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-title">🧠 AI Fundamentals</div>
+              <div class="pillar-desc">State spaces, heuristic searches, expert logic, and intelligent agent designs.</div>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-title">📊 ML Foundations</div>
+              <div class="pillar-desc">Supervised vs unsupervised learning, regression, cost functions & gradients.</div>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-title">⚡ Data & Algorithms</div>
+              <div class="pillar-desc">Algorithmic complexity, data structures, recursion & optimal problem solving.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         EDUCATION SECTION: "THE ACADEMY"
+         ========================================================================== -->
+    <section id="education">
+      <div class="jp-watermark">修練の場</div>
+      <div class="section-header">
+        <span class="section-tag">Academic Stronghold</span>
+        <h2 class="section-title">THE ACADEMY</h2>
+        <p class="section-subtitle">Academic milestones, engineering degree, and progressive roadmap.</p>
+      </div>
+
+      <div class="academy-grid">
+        <!-- Institution Card -->
+        <div class="academy-institution-card">
+          <div class="jp-corner jp-corner-tl"></div>
+          <div class="jp-corner jp-corner-br"></div>
+          <span class="nst-badge">PREMIER TECH INSTITUTE</span>
+          <h3 class="institution-name">Newton School of Technology</h3>
+          <p class="university-name">In Collaboration with Ajeenkya DY Patil University</p>
+
+          <ul class="degree-specs-list">
+            <li class="degree-spec-item">
+              <span class="spec-key">DEGREE</span>
+              <span class="spec-val">Bachelor of Technology (B.Tech)</span>
+            </li>
+            <li class="degree-spec-item">
+              <span class="spec-key">BRANCH</span>
+              <span class="spec-val">Computer Science Engineering</span>
+            </li>
+            <li class="degree-spec-item">
+              <span class="spec-key">SPECIALIZATION</span>
+              <span class="spec-val">Artificial Intelligence & ML</span>
+            </li>
+            <li class="degree-spec-item">
+              <span class="spec-key">CURRENT YEAR</span>
+              <span class="spec-val">First Year (Class of 2029)</span>
+            </li>
+            <li class="degree-spec-item">
+              <span class="spec-key">FOCUS</span>
+              <span class="spec-val">Software Eng, AI Core, Real-World Projects</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Vertical Timeline Roadmap -->
+        <div class="timeline-container">
+          <!-- Timeline Node 1 -->
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <p class="timeline-phase">PHASE 01 • INCEPTION</p>
+              <h4 class="timeline-heading">Beginning of Engineering Journey</h4>
+              <p class="timeline-desc">
+                Enrolled at Newton School of Technology to pursue B.Tech CSE (AI & ML). Began immersive coursework covering computer systems and engineering principles.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Node 2 -->
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <p class="timeline-phase">PHASE 02 • CORE WEAPONRY</p>
+              <h4 class="timeline-heading">Programming Fundamentals</h4>
+              <p class="timeline-desc">
+                Mastering Python syntax, control structures, functional decomposition, object-oriented concepts, and computational problem solving.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Node 3 -->
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <p class="timeline-phase">PHASE 03 • CANVAS CREATION</p>
+              <h4 class="timeline-heading">Exploring Web Development</h4>
+              <p class="timeline-desc">
+                Acquiring modern frontend skills (HTML5, responsive CSS3, vanilla JavaScript, DOM manipulation, and interactive canvas scripting).
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Node 4 -->
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <p class="timeline-phase">PHASE 04 • DOMAIN EXPANSION</p>
+              <h4 class="timeline-heading">Building Practical Projects</h4>
+              <p class="timeline-desc">
+                Applying knowledge to tangible applications like <em>Kisan Label</em> (AI pesticide explainer) and browser-based 3D graphics with Three.js.
+              </p>
+            </div>
+          </div>
+
+          <!-- Timeline Node 5 -->
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <p class="timeline-phase">PHASE 05 • INTELLIGENCE AWAKENING</p>
+              <h4 class="timeline-heading">Exploring AI and Machine Learning</h4>
+              <p class="timeline-desc">
+                Diving into mathematical foundations (linear algebra, probability, calculus) and machine learning modeling to build intelligent digital systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ACHIEVEMENTS SECTION: "ACHIEVEMENTS UNLOCKED"
+         ========================================================================== -->
+    <section id="achievements">
+      <div class="jp-watermark">業績解除</div>
+      <div class="section-header">
+        <span class="section-tag">Trophy Vault</span>
+        <h2 class="section-title">ACHIEVEMENTS UNLOCKED</h2>
+        <p class="section-subtitle">Milestones conquered along the developmental and academic path.</p>
+      </div>
+
+      <div class="achievements-grid">
+        <!-- Milestone 1 -->
+        <div class="achievement-card">
+          <div class="achievement-badge-seal">💻</div>
+          <span class="achievement-category">PROGRAMMING MILESTONE</span>
+          <h3 class="achievement-title">First 10,000 Lines of Code</h3>
+          <p class="achievement-desc">Authored and debugged thousands of lines of functional Python, JavaScript, and web code across personal and academic builds.</p>
+          <span class="achievement-status">✓ UNLOCKED</span>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="achievement-card">
+          <div class="achievement-badge-seal">🚀</div>
+          <span class="achievement-category">PROJECTS BUILT</span>
+          <h3 class="achievement-title">Domain Architect: 3D Web</h3>
+          <p class="achievement-desc">Engineered interactive procedural 3D environments using Three.js and custom math without reliance on external asset dependencies.</p>
+          <span class="achievement-status">✓ UNLOCKED</span>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="achievement-card">
+          <div class="achievement-badge-seal">🌾</div>
+          <span class="achievement-category">SOCIAL IMPACT</span>
+          <h3 class="achievement-title">Kisan Label Prototype</h3>
+          <p class="achievement-desc">Conceptualized and prototyped an assistive AI tool aimed at bridging technical chemical pesticide instructions for Indian farmers.</p>
+          <span class="achievement-status">✓ UNLOCKED</span>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="achievement-card">
+          <div class="achievement-badge-seal">⚡</div>
+          <span class="achievement-category">HACKATHON PARTICIPATION</span>
+          <h3 class="achievement-title">NST Hackathon Challenger</h3>
+          <p class="achievement-desc">Active participant in campus hackathons and sprint problem-solving challenges at Newton School of Technology.</p>
+          <span class="achievement-status">✓ UNLOCKED</span>
+        </div>
+
+        <!-- Milestone 5 -->
+        <div class="achievement-card">
+          <div class="achievement-badge-seal">🧠</div>
+          <span class="achievement-category">LEARNING MILESTONE</span>
+          <h3 class="achievement-title">AI & ML Foundations Quest</h3>
+          <p class="achievement-desc">Completed rigorous introductory modules in Python algorithms, math for machine learning, and neural network principles.</p>
+          <span class="achievement-status">🔄 IN PROGRESS</span>
+        </div>
+
+        <!-- Milestone 6 -->
+        <div class="achievement-card">
+          <div class="achievement-badge-seal">🔒</div>
+          <span class="achievement-category">FUTURE LAUREL</span>
+          <h3 class="achievement-title">Future Competition Slot</h3>
+          <p class="achievement-desc">Reserved for upcoming national competitions, research papers, and technical hackathon honors as they are earned.</p>
+          <span class="achievement-status" style="color: var(--text-muted);">⏳ UPCOMING</span>
+        </div>
+      </div>
+
+      <p class="achievement-placeholder-note">
+        * Accurately representing verified student progress. Achievements and accolades will be dynamically updated as new milestones are unlocked.
+      </p>
+    </section>
+
+    <!-- ==========================================================================
+         BEYOND CODING SECTION: ONLY MUSIC & CREATIVITY
+         ========================================================================== -->
+    <section id="beyond">
+      <div class="jp-watermark">デジタルの彼方</div>
+      <div class="section-header">
+        <span class="section-tag">Human Dimension</span>
+        <h2 class="section-title">BEYOND THE DIGITAL WORLD</h2>
+        <p class="section-subtitle">Exploring personal passions that recharge the mind and fuel innovative thinking.</p>
+      </div>
+
+      <div class="beyond-grid">
+        <!-- Card 1: MUSIC — THE RHYTHM OF LIFE -->
+        <div class="beyond-card">
+          <div class="jp-corner jp-corner-tl"></div>
+          <div class="jp-corner jp-corner-br"></div>
+          <span class="beyond-tag">HARMONIC EXPRESSION</span>
+          <h3 class="beyond-title">
+            <span>MUSIC — THE RHYTHM OF LIFE</span>
+            <span style="color: var(--purple-light);">🎧</span>
+          </h3>
+          <p class="beyond-desc">
+            "Music is another part of my personality. It helps me express creativity, stay inspired, and enjoy life beyond programming."
+          </p>
+
+          <!-- Interactive Anime Equalizer Canvas -->
+          <div class="music-visual-container">
+            <canvas id="equalizer-canvas"></canvas>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center;">
+            [ LIVE AUDIO VISUALIZER: PROCEDURAL HARMONIC EQUALIZER ]
+          </p>
+        </div>
+
+        <!-- Card 2: CREATIVITY — THE ART OF IDEAS -->
+        <div class="beyond-card">
+          <div class="jp-corner jp-corner-tl"></div>
+          <div class="jp-corner jp-corner-br"></div>
+          <span class="beyond-tag">INNOVATION & VISION</span>
+          <h3 class="beyond-title">
+            <span>CREATIVITY — THE ART OF IDEAS</span>
+            <span style="color: var(--electric-blue);">💡</span>
+          </h3>
+          <p class="beyond-desc">
+            "I enjoy exploring creative ideas, experimenting with technology, and finding new ways to turn imagination into reality."
+          </p>
+
+          <!-- Creativity Canvas Visual -->
+          <div class="creativity-visual-container">
+            <canvas id="creativity-canvas"></canvas>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center;">
+            [ PROCEDURAL IDEA PRISM: CREATIVE SPARK SIMULATION ]
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         DEVELOPER TERMINAL SECTION: "ENTER THE DEVELOPER TERMINAL"
+         ========================================================================== -->
+    <section id="terminal">
+      <div class="jp-watermark">端末起動</div>
+      <div class="section-header">
+        <span class="section-tag">Interactive CLI</span>
+        <h2 class="section-title">ENTER THE DEVELOPER TERMINAL</h2>
+        <p class="section-subtitle">Execute direct commands to query Prince's portfolio, socials, and tech domain.</p>
+      </div>
+
+      <div class="terminal-wrapper">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <span class="terminal-title">prince@domain-expansion:~ (bash / zsh)</span>
+          <span style="font-size: 0.75rem; color: var(--purple-light);">v2.4.0</span>
+        </div>
+
+        <div class="terminal-body" id="terminal-screen">
+          <div class="terminal-output-line term-purple">
+            =====================================================================
+          </div>
+          <div class="terminal-output-line term-blue">
+            PRINCE VERMA — THE DEVELOPER'S DOMAIN TERMINAL [v2.4.0]
+          </div>
+          <div class="terminal-output-line term-muted">
+            Type <span class="term-green">'help'</span> to view available system commands or click shortcut badges below.
+          </div>
+          <div class="terminal-output-line term-purple">
+            =====================================================================
+          </div>
+          
+          <!-- Terminal interactive input row -->
+          <div class="terminal-input-row" id="terminal-active-row">
+            <span class="terminal-prompt">visitor@prince:~$</span>
+            <input type="text" id="terminal-cli-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus aria-label="Terminal command input">
+          </div>
+        </div>
+
+        <!-- Terminal Quick Command Pills -->
+        <div class="terminal-quick-pills">
+          <span class="pill-label">QUICK COMMANDS:</span>
+          <button class="term-cmd-btn" data-cmd="help">help</button>
+          <button class="term-cmd-btn" data-cmd="about">about</button>
+          <button class="term-cmd-btn" data-cmd="skills">skills</button>
+          <button class="term-cmd-btn" data-cmd="projects">projects</button>
+          <button class="term-cmd-btn" data-cmd="education">education</button>
+          <button class="term-cmd-btn" data-cmd="journey">journey</button>
+          <button class="term-cmd-btn" data-cmd="hobbies">hobbies</button>
+          <button class="term-cmd-btn" data-cmd="github">github</button>
+          <button class="term-cmd-btn" data-cmd="linkedin">linkedin</button>
+          <button class="term-cmd-btn" data-cmd="email">email</button>
+          <button class="term-cmd-btn" data-cmd="clear">clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT SECTION: "LET'S CONNECT"
+         ========================================================================== -->
+    <section id="contact">
+      <div class="jp-watermark">交信開始</div>
+      <div class="section-header">
+        <span class="section-tag">Comm Channel</span>
+        <h2 class="section-title">LET'S CONNECT</h2>
+        <p class="section-subtitle">"Have an idea, a project, or just want to talk about technology? Let's connect."</p>
+      </div>
+
+      <div class="connect-grid">
+        <!-- Contact Details Card -->
+        <div class="connect-info-card">
+          <div>
+            <h3 class="connect-heading">Prince Verma</h3>
+            <p class="connect-bio">
+              First-year B.Tech CSE student specializing in AI & ML at Newton School of Technology. Always open to discussing innovative technology, student collaborations, open-source projects, and future opportunities.
+            </p>
+
+            <div class="contact-links-list">
+              <!-- Email -->
+              <a href="mailto:vermaprinceramjanak@gmail.com" class="contact-link-item">
+                <div class="contact-link-icon">✉️</div>
+                <div class="contact-link-details">
+                  <span class="contact-link-title">PRIMARY EMAIL</span>
+                  <span class="contact-link-val">vermaprinceramjanak@gmail.com</span>
+                </div>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com/PrinceVerma44" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                <div class="contact-link-icon">🐙</div>
+                <div class="contact-link-details">
+                  <span class="contact-link-title">GITHUB PROFILE</span>
+                  <span class="contact-link-val">github.com/PrinceVerma44</span>
+                </div>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/in/prince-verma-648717440/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                <div class="contact-link-icon">💼</div>
+                <div class="contact-link-details">
+                  <span class="contact-link-title">LINKEDIN PROFILE</span>
+                  <span class="contact-link-val">linkedin.com/in/prince-verma-648717440</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://github.com/PrinceVerma44" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-primary" style="flex: 1; padding: 0.75rem 1rem;">
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/prince-verma-648717440/" target="_blank" rel="noopener noreferrer" class="btn-hero btn-hero-secondary" style="flex: 1; padding: 0.75rem 1rem;">
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:vermaprinceramjanak@gmail.com" class="btn-hero btn-hero-outline" style="flex: 1; padding: 0.75rem 1rem;">
+              <span>Send Email</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Functional Mailto Contact Form -->
+        <div class="connect-form-card">
+          <h3 class="form-title">Transmit a Message</h3>
+          <p class="form-subtitle">Fill in your details to launch a pre-formatted message in your default email application.</p>
+
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">YOUR NAME</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="e.g. Kenji Tanaka" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email" class="form-label">YOUR EMAIL ADDRESS</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="e.g. name@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">SUBJECT</label>
+              <input type="text" id="contact-subject" class="form-input" placeholder="e.g. Collaboration on AI Project / Hackathon" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">MESSAGE</label>
+              <textarea id="contact-message" class="form-textarea" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-send-message">
+              <span>Send Transmission via Email</span>
+              <span>⚡</span>
+            </button>
+
+            <p class="form-note">
+              * Note: Dispatches directly via your system's mail client to <strong>vermaprinceramjanak@gmail.com</strong>. No external tracking or backend server required.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FOOTER & BRAND STATEMENT
+         ========================================================================== -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">PRINCE VERMA</div>
+        
+        <p class="brand-statement">
+          "I AM PRINCE VERMA. I AM LEARNING, BUILDING, EXPERIMENTING, AND CREATING MY OWN DOMAIN IN THE WORLD OF TECHNOLOGY."
+        </p>
+
+        <p style="color: var(--sunset-orange); font-style: italic; font-size: 0.95rem;">
+          "Designed with curiosity. Built with code."
+        </p>
+
+        <ul class="footer-nav">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#journey">AI/ML Journey</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#beyond">Beyond Coding</a></li>
+          <li><a href="#terminal">Terminal</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="footer-socials">
+          <a href="https://github.com/PrinceVerma44" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub Profile">🐙</a>
+          <a href="https://www.linkedin.com/in/prince-verma-648717440/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn Profile">💼</a>
+          <a href="mailto:vermaprinceramjanak@gmail.com" class="footer-social-btn" aria-label="Send Email">✉️</a>
+        </div>
+
+        <div class="footer-bottom">
+          <span>© 2026 Prince Verma. All Rights Reserved.</span>
+          <button id="back-to-top-btn" class="back-to-top-btn" aria-label="Back to Top">
+            <span>BACK TO TOP</span>
+            <span>▲</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==========================================================================
+       RESUME PREVIEW MODAL
+       ========================================================================== -->
+  <div id="resume-modal" class="modal-overlay" aria-modal="true" role="dialog">
+    <div class="modal-window">
+      <button id="close-resume-modal-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      
+      <div class="resume-header">
+        <h2 class="resume-name">PRINCE VERMA</h2>
+        <p class="resume-title">B.Tech Computer Science Engineering (AI & ML) • Newton School of Technology</p>
+        <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 0.25rem;">
+          Email: <a href="mailto:vermaprinceramjanak@gmail.com" style="color: var(--electric-blue);">vermaprinceramjanak@gmail.com</a> | GitHub: <a href="https://github.com/PrinceVerma44" target="_blank" style="color: var(--purple-light);">PrinceVerma44</a>
+        </p>
+      </div>
+
+      <div class="resume-section">
+        <h3 class="resume-section-title">EDUCATION</h3>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <span>Newton School of Technology / ADYPU</span>
+            <span style="color: var(--sunset-orange);">2025 – Present</span>
+          </div>
+          <div class="resume-item-sub">B.Tech in Computer Science Engineering (Artificial Intelligence & Machine Learning)</div>
+          <p class="resume-item-desc">Current Focus: Python Programming, Data Structures & Algorithms, Calculus & Linear Algebra for AI, Web Architecture.</p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h3 class="resume-section-title">TECHNICAL TECHNIQUE ARSENAL</h3>
+        <div class="resume-item">
+          <p class="resume-item-desc">
+            <strong style="color: var(--text-white);">Languages:</strong> Python, JavaScript (ES6+), HTML5, CSS3<br>
+            <strong style="color: var(--text-white);">Developer Tools:</strong> Git, GitHub, Command Line Interface (CLI), VS Code<br>
+            <strong style="color: var(--text-white);">Exploratory Topics:</strong> Artificial Intelligence, Machine Learning, Three.js, WebGL, Data Structures
+          </p>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h3 class="resume-section-title">FEATURED PROJECTS</h3>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <span>Kisan Label — AI Pesticide Explainer</span>
+            <span style="color: var(--electric-blue);">Social Impact</span>
+          </div>
+          <p class="resume-item-desc">AI-powered assistant designed to translate complicated pesticide labels into simple instructions and safety precautions for Indian farmers.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <span>3D Battlegrounds</span>
+            <span style="color: var(--electric-blue);">Game Concept</span>
+          </div>
+          <p class="resume-item-desc">Interactive browser-based 3D environment with character physics, dynamic arenas, and real-time Three.js rendering.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-item-header">
+            <span>The Developer's Domain Portfolio</span>
+            <span style="color: var(--electric-blue);">Frontend / 3D</span>
+          </div>
+          <p class="resume-item-desc">Full-stack single-file anime-themed 3D portfolio featuring procedural Three.js graphics, custom CLI terminal, and responsive UI.</p>
+        </div>
+      </div>
+
+      <div class="resume-actions">
+        <button id="print-resume-btn" class="btn-domain" style="flex: 1; padding: 0.75rem 1rem;">
+          <span>Print / Save as PDF</span>
+          <span>🖨️</span>
+        </button>
+        <button id="close-resume-bottom-btn" class="btn-domain btn-domain-alt" style="flex: 1; padding: 0.75rem 1rem;">
+          <span>Close Dossier</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       PROJECT DETAIL MODAL
+       ========================================================================== -->
+  <div id="project-modal" class="modal-overlay" aria-modal="true" role="dialog">
+    <div class="modal-window">
+      <button id="close-project-modal-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div id="project-modal-content">
+        <!-- Dynamically injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT: THREE.JS 3D ENGINE, CANVAS FALLBACK, AUDIO & LOGIC
+       (No ES Modules, No Local Fetch, 100% Standalone for file:// execution)
+       ========================================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* ==========================================================================
+         WEB AUDIO API: PROCEDURAL AMBIENT ANIME SOUND SYNTHESIZER
+         (Zero external audio files, completely optional, works via file://)
+         ========================================================================== */
+      let audioCtx = null;
+      let isPlayingSound = false;
+      let masterGain = null;
+      let soundInterval = null;
+
+      function initAudio() {
+        if (audioCtx) return;
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            audioCtx = new AudioContext();
+            masterGain = audioCtx.createGain();
+            masterGain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+            masterGain.connect(audioCtx.destination);
+          }
+        } catch (e) {
+          console.warn("Web Audio API not supported:", e);
+        }
+      }
+
+      // Play soft atmospheric anime pentatonic notes (A minor / Insen Japanese scale)
+      function playZenNote(freq, duration) {
+        if (!audioCtx || !isPlayingSound) return;
+        try {
+          const osc = audioCtx.createOscillator();
+          const noteGain = audioCtx.createGain();
+          
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          
+          noteGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+          noteGain.gain.exponentialRampToValueAtTime(0.08, audioCtx.currentTime + 0.1);
+          noteGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+          
+          osc.connect(noteGain);
+          noteGain.connect(masterGain);
+          
+          osc.start();
+          osc.stop(audioCtx.currentTime + duration);
+        } catch (e) {}
+      }
+
+      function startAmbientAtmosphere() {
+        if (!audioCtx) initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        isPlayingSound = true;
+        
+        // Japanese Insen Scale Frequencies (D, Eb, G, A, C)
+        const scale = [293.66, 311.13, 392.00, 440.00, 523.25, 587.33];
+        
+        function loopNotes() {
+          if (!isPlayingSound) return;
+          const randomNote = scale[Math.floor(Math.random() * scale.length)];
+          playZenNote(randomNote, 3.5);
+          soundInterval = setTimeout(loopNotes, 1800 + Math.random() * 2000);
+        }
+        loopNotes();
+      }
+
+      function stopAmbientAtmosphere() {
+        isPlayingSound = false;
+        if (soundInterval) {
+          clearTimeout(soundInterval);
+          soundInterval = null;
+        }
+      }
+
+      const soundBtn = document.getElementById("sound-toggle");
+      const soundIcon = document.getElementById("sound-icon");
+
+      soundBtn.addEventListener("click", function () {
+        if (!isPlayingSound) {
+          startAmbientAtmosphere();
+          soundBtn.classList.add("playing");
+          soundIcon.textContent = "🔊";
+          soundBtn.title = "Mute Ambient Sound";
+        } else {
+          stopAmbientAtmosphere();
+          soundBtn.classList.remove("playing");
+          soundIcon.textContent = "🔇";
+          soundBtn.title = "Unmute Ambient Sound";
+        }
+      });
+
+      /* ==========================================================================
+         CINEMATIC INTRO SCREEN HANDLING
+         ========================================================================== */
+      const cinematicIntro = document.getElementById("cinematic-intro");
+      const enterDomainBtn = document.getElementById("enter-domain-btn");
+      const exploreWorkBtn = document.getElementById("explore-work-btn");
+      const skipIntroBtn = document.getElementById("skip-intro-btn");
+
+      function dismissIntro() {
+        if (cinematicIntro && !cinematicIntro.classList.contains("hidden")) {
+          cinematicIntro.classList.add("hidden");
+          setTimeout(() => {
+            cinematicIntro.style.display = "none";
+          }, 850);
+
+          // GSAP Hero Entrance sequence
+          if (window.gsap) {
+            gsap.from(".hero-content > *", {
+              y: 30,
+              opacity: 0,
+              stagger: 0.1,
+              duration: 0.9,
+              ease: "power3.out",
+              delay: 0.2
+            });
+            gsap.from("#hero-card-interaction", {
+              scale: 0.94,
+              opacity: 0,
+              duration: 1,
+              ease: "power2.out",
+              delay: 0.4
+            });
+          }
+        }
+      }
+
+      if (enterDomainBtn) {
+        enterDomainBtn.addEventListener("click", function () {
+          dismissIntro();
+        });
+      }
+
+      if (exploreWorkBtn) {
+        exploreWorkBtn.addEventListener("click", function () {
+          dismissIntro();
+          const target = document.getElementById("projects");
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      }
+
+      if (skipIntroBtn) {
+        skipIntroBtn.addEventListener("click", dismissIntro);
+      }
+
+      // Auto dismiss after 6 seconds if user doesn't click, ensuring instant usability
+      setTimeout(() => {
+        dismissIntro();
+      }, 7000);
+
+      // Intro Canvas ambient particle swirl
+      const introCanvas = document.getElementById("intro-particles-canvas");
+      if (introCanvas) {
+        const ictx = introCanvas.getContext("2d");
+        let iParticles = [];
+        let iw = (introCanvas.width = window.innerWidth);
+        let ih = (introCanvas.height = window.innerHeight);
+
+        for (let i = 0; i < 45; i++) {
+          iParticles.push({
+            x: Math.random() * iw,
+            y: Math.random() * ih,
+            r: Math.random() * 2 + 1,
+            vx: (Math.random() - 0.5) * 0.8,
+            vy: (Math.random() - 0.5) * 0.8,
+            color: Math.random() > 0.5 ? "rgba(139, 92, 246, 0.4)" : "rgba(56, 189, 248, 0.4)"
+          });
+        }
+
+        function animIntroParticles() {
+          if (cinematicIntro.classList.contains("hidden")) return;
+          ictx.clearRect(0, 0, iw, ih);
+          for (let p of iParticles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0) p.x = iw;
+            if (p.x > iw) p.x = 0;
+            if (p.y < 0) p.y = ih;
+            if (p.y > ih) p.y = 0;
+
+            ictx.beginPath();
+            ictx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ictx.fillStyle = p.color;
+            ictx.fill();
+          }
+          requestAnimationFrame(animIntroParticles);
+        }
+        requestAnimationFrame(animIntroParticles);
+
+        window.addEventListener("resize", () => {
+          iw = introCanvas.width = window.innerWidth;
+          ih = introCanvas.height = window.innerHeight;
+        });
+      }
+
+      /* ==========================================================================
+         NAVIGATION SCROLL SPY & MOBILE MENU
+         ========================================================================== */
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+      hamburgerBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+      });
+
+      mobileNavLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+        });
+      });
+
+      // Active Section Scroll Spy
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        const scrollPosition = window.scrollY + 200;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Back to top button
+      const backToTopBtn = document.getElementById("back-to-top-btn");
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+
+      /* ==========================================================================
+         THREE.JS 3D ANIME WORLD & CHARACTER IMPLEMENTATION
+         (Procedural 3D Japanese sunset, Pagoda, Sakura tree, Petals, Cursed energy,
+          Stylized anime character with streetwear & breathing dynamics)
+         ========================================================================== */
+      const webglCanvas = document.getElementById("webgl-canvas");
+      const canvasFallback = document.getElementById("canvas-fallback");
+      let scene, camera, renderer;
+      let characterGroup, hairMesh, coatMesh, auraGroup;
+      let leftHandEnergy, rightHandEnergy;
+      let sakuraPetalsMesh = [];
+      let mouseX = 0, mouseY = 0;
+      let targetCameraX = 0, targetCameraY = 0;
+      let isWebGLAvailable = false;
+      let clock = null;
+
+      function checkWebGL() {
+        try {
+          const testCanvas = document.createElement("canvas");
+          return !!(window.WebGLRenderingContext && (testCanvas.getContext("webgl") || testCanvas.getContext("experimental-webgl")));
+        } catch (e) {
+          return false;
+        }
+      }
+
+      if (window.THREE && checkWebGL()) {
+        try {
+          initThreeScene();
+          isWebGLAvailable = true;
+        } catch (err) {
+          console.warn("Three.js initialization failed, falling back to 2D Canvas:", err);
+          initCanvasFallback();
+        }
+      } else {
+        initCanvasFallback();
+      }
+
+      function initThreeScene() {
+        clock = new THREE.Clock();
+        scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x151426, 0.022);
+
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 1.8, 6.2);
+
+        renderer = new THREE.WebGLRenderer({
+          canvas: webglCanvas,
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance"
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // 1. Procedural Japanese Sunset Sky Sphere
+        const skyGeo = new THREE.SphereGeometry(120, 32, 24);
+        
+        // Procedural sunset gradient texture using an in-memory canvas
+        const skyTexCanvas = document.createElement("canvas");
+        skyTexCanvas.width = 512;
+        skyTexCanvas.height = 512;
+        const sctx = skyTexCanvas.getContext("2d");
+        const skyGrad = sctx.createLinearGradient(0, 0, 0, 512);
+        skyGrad.addColorStop(0.0, "#080814");   // Deep cosmic purple
+        skyGrad.addColorStop(0.35, "#25143A");  // Mystic purple
+        skyGrad.addColorStop(0.65, "#7B2869");  // Crimson anime dusk
+        skyGrad.addColorStop(0.82, "#FF6B4A");  // Fiery sunset orange
+        skyGrad.addColorStop(0.95, "#FFB085");  // Warm sunset horizon
+        skyGrad.addColorStop(1.0, "#F9A8D4");   // Sakura horizon glow
+        sctx.fillStyle = skyGrad;
+        sctx.fillRect(0, 0, 512, 512);
+
+        // Add distant sunset sun glow on canvas
+        const sunGlow = sctx.createRadialGradient(256, 420, 10, 256, 420, 180);
+        sunGlow.addColorStop(0, "rgba(255, 240, 200, 0.95)");
+        sunGlow.addColorStop(0.3, "rgba(255, 138, 91, 0.7)");
+        sunGlow.addColorStop(0.7, "rgba(255, 107, 74, 0.2)");
+        sunGlow.addColorStop(1, "rgba(255, 107, 74, 0)");
+        sctx.fillStyle = sunGlow;
+        sctx.fillRect(0, 0, 512, 512);
+
+        const skyTexture = new THREE.CanvasTexture(skyTexCanvas);
+        const skyMat = new THREE.MeshBasicMaterial({
+          map: skyTexture,
+          side: THREE.BackSide
+        });
+        const skyDome = new THREE.Mesh(skyGeo, skyMat);
+        scene.add(skyDome);
+
+        // 2. Lighting (Atmospheric Japanese Sunset + Supernatural Energy)
+        const ambientLight = new THREE.AmbientLight(0x7558A6, 0.9);
+        scene.add(ambientLight);
+
+        const sunsetDirLight = new THREE.DirectionalLight(0xFF8A5B, 1.4);
+        sunsetDirLight.position.set(-8, 5, -12);
+        scene.add(sunsetDirLight);
+
+        const supernaturalPointLight = new THREE.PointLight(0x38BDF8, 2, 8);
+        supernaturalPointLight.position.set(1.5, 2, 1);
+        scene.add(supernaturalPointLight);
+
+        const purpleAuraLight = new THREE.PointLight(0x8B5CF6, 2.5, 10);
+        purpleAuraLight.position.set(-1.5, 1.5, 1.5);
+        scene.add(purpleAuraLight);
+
+        // 3. Procedural Distant Japanese Mountain Silhouettes
+        const mountainGroup = new THREE.Group();
+        const mountainMat = new THREE.MeshBasicMaterial({ color: 0x110E24 });
+
+        for (let m = 0; m < 5; m++) {
+          const mGeo = new THREE.ConeGeometry(8 + m * 4, 12 + m * 3, 4);
+          const mMesh = new THREE.Mesh(mGeo, mountainMat);
+          mMesh.position.set(-35 + m * 18, 0, -50 - m * 5);
+          mMesh.rotation.y = Math.PI * 0.25;
+          mountainGroup.add(mMesh);
+        }
+        scene.add(mountainGroup);
+
+        // 4. Procedural Japanese Pagoda / Temple Silhouette on distant ridge
+        const pagodaGroup = new THREE.Group();
+        const pagodaMat = new THREE.MeshStandardMaterial({
+          color: 0x16142B,
+          roughness: 0.8
+        });
+
+        // 3 Pagoda curved tiers
+        for (let t = 0; t < 3; t++) {
+          const tierGeo = new THREE.ConeGeometry(3.5 - t * 0.7, 1.2, 4);
+          const tierMesh = new THREE.Mesh(tierGeo, pagodaMat);
+          tierMesh.position.set(0, 3 + t * 1.5, 0);
+          tierMesh.rotation.y = Math.PI * 0.25;
+          pagodaGroup.add(tierMesh);
+
+          const pillarGeo = new THREE.BoxGeometry(1.8 - t * 0.3, 1, 1.8 - t * 0.3);
+          const pillarMesh = new THREE.Mesh(pillarGeo, pagodaMat);
+          pillarMesh.position.set(0, 2.4 + t * 1.5, 0);
+          pagodaGroup.add(pillarMesh);
+        }
+        pagodaGroup.position.set(12, 1, -26);
+        pagodaGroup.scale.set(1.3, 1.3, 1.3);
+        scene.add(pagodaGroup);
+
+        // Torii Gate Silhouette
+        const toriiGroup = new THREE.Group();
+        const toriiMat = new THREE.MeshStandardMaterial({ color: 0x1F142B });
+        
+        // Pillars
+        const p1 = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 4, 8), toriiMat);
+        p1.position.set(-1.5, 2, 0);
+        const p2 = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 4, 8), toriiMat);
+        p2.position.set(1.5, 2, 0);
+        toriiGroup.add(p1);
+        toriiGroup.add(p2);
+
+        // Crossbeams
+        const beamTop = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.35, 0.4), toriiMat);
+        beamTop.position.set(0, 3.8, 0);
+        const beamSub = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.25, 0.3), toriiMat);
+        beamSub.position.set(0, 3.2, 0);
+        toriiGroup.add(beamTop);
+        toriiGroup.add(beamSub);
+
+        toriiGroup.position.set(-10, 0, -20);
+        toriiGroup.rotation.y = 0.35;
+        scene.add(toriiGroup);
+
+        // 5. Traditional Japanese Rooftop Structure (Foreground platform where character stands)
+        const rooftopGroup = new THREE.Group();
+        const roofTileMat = new THREE.MeshStandardMaterial({
+          color: 0x1E1A33,
+          roughness: 0.6,
+          metalness: 0.2
+        });
+
+        // Slanted traditional Japanese roof
+        const roofBase = new THREE.Mesh(new THREE.BoxGeometry(9, 0.6, 6), roofTileMat);
+        roofBase.position.set(1.8, -0.3, 0);
+        roofBase.rotation.x = 0.08;
+        rooftopGroup.add(roofBase);
+
+        // Traditional curved ridge tiles (Kawara)
+        for (let r = 0; r < 8; r++) {
+          const tileRidge = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 6, 8), roofTileMat);
+          tileRidge.rotation.x = Math.PI * 0.5 + 0.08;
+          tileRidge.position.set(-2 + r * 0.9, -0.05, 0);
+          rooftopGroup.add(tileRidge);
+        }
+        rooftopGroup.position.set(0.5, -0.8, 0);
+        scene.add(rooftopGroup);
+
+        // Cherry Blossom (Sakura) Tree Branch in background
+        const sakuraTreeGroup = new THREE.Group();
+        const trunkMat = new THREE.MeshStandardMaterial({ color: 0x2A1D33 });
+        const sakuraCanopyMat = new THREE.MeshStandardMaterial({
+          color: 0xF9A8D4,
+          roughness: 0.5,
+          emissive: 0x6E2D53,
+          emissiveIntensity: 0.25
+        });
+
+        // Gnarled stylized trunk
+        const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.65, 5, 8), trunkMat);
+        trunk.position.set(-3.8, 1.2, -4);
+        trunk.rotation.z = -0.2;
+        sakuraTreeGroup.add(trunk);
+
+        // Fluffy Sakura blossom clusters
+        const blossomClusterPositions = [
+          [-3.2, 3.8, -3.8, 1.4],
+          [-4.4, 3.4, -4.2, 1.2],
+          [-2.2, 4.2, -3.5, 1.1],
+          [-3.8, 4.8, -4.0, 1.3]
+        ];
+
+        blossomClusterPositions.forEach(([bx, by, bz, bs]) => {
+          const clusterGeo = new THREE.DodecahedronGeometry(bs, 1);
+          const clusterMesh = new THREE.Mesh(clusterGeo, sakuraCanopyMat);
+          clusterMesh.position.set(bx, by, bz);
+          sakuraTreeGroup.add(clusterMesh);
+        });
+        scene.add(sakuraTreeGroup);
+
+        // 6. ORIGINAL ANIME DEVELOPER CHARACTER (Stylized 3D Character)
+        characterGroup = new THREE.Group();
+
+        // Materials for anime character
+        const skinMat = new THREE.MeshStandardMaterial({
+          color: 0xFAD5C0,
+          roughness: 0.4
+        });
+        const jacketMat = new THREE.MeshStandardMaterial({
+          color: 0x0F0E1C,
+          roughness: 0.5,
+          metalness: 0.1
+        });
+        const hairMat = new THREE.MeshStandardMaterial({
+          color: 0x080812,
+          roughness: 0.7
+        });
+        const neonTrimMat = new THREE.MeshBasicMaterial({
+          color: 0x38BDF8
+        });
+        const purpleTrimMat = new THREE.MeshBasicMaterial({
+          color: 0x8B5CF6
+        });
+
+        // Torso / Oversized techwear jacket
+        const torsoGeo = new THREE.BoxGeometry(0.85, 1.25, 0.55);
+        const torso = new THREE.Mesh(torsoGeo, jacketMat);
+        torso.position.y = 1.15;
+        characterGroup.add(torso);
+
+        // High upturned collar (Japanese anime streetwear signature)
+        const collarGeo = new THREE.CylinderGeometry(0.38, 0.36, 0.4, 8, 1, true);
+        const collar = new THREE.Mesh(collarGeo, jacketMat);
+        collar.position.set(0, 1.82, 0);
+        characterGroup.add(collar);
+
+        // Glowing trim zipper line
+        const zipGeo = new THREE.BoxGeometry(0.04, 1.2, 0.58);
+        const zipper = new THREE.Mesh(zipGeo, neonTrimMat);
+        zipper.position.set(0, 1.15, 0);
+        characterGroup.add(zipper);
+
+        // Head
+        const headGeo = new THREE.SphereGeometry(0.32, 16, 16);
+        const head = new THREE.Mesh(headGeo, skinMat);
+        head.position.set(0, 2.1, 0);
+        characterGroup.add(head);
+
+        // Anime stylized spiky black hair
+        const hairGroup = new THREE.Group();
+        const mainHairCap = new THREE.Mesh(new THREE.SphereGeometry(0.34, 12, 12), hairMat);
+        mainHairCap.position.set(0, 2.15, -0.05);
+        hairGroup.add(mainHairCap);
+
+        // Spikes
+        const spikePositions = [
+          [0, 2.45, 0.05, 0.2, 0.5, 0],
+          [-0.2, 2.38, 0.1, 0.18, 0.45, -0.2],
+          [0.2, 2.38, 0.1, 0.18, 0.45, 0.2],
+          [-0.25, 2.2, 0.18, 0.15, 0.4, -0.4],
+          [0.25, 2.2, 0.18, 0.15, 0.4, 0.4],
+          [0, 2.42, -0.2, 0.2, 0.45, 0.3]
+        ];
+
+        spikePositions.forEach(([sx, sy, sz, sr, sh, srot]) => {
+          const spike = new THREE.Mesh(new THREE.ConeGeometry(sr, sh, 5), hairMat);
+          spike.position.set(sx, sy, sz);
+          spike.rotation.z = srot;
+          hairGroup.add(spike);
+        });
+        characterGroup.add(hairGroup);
+
+        // Glowing anime cyber-visor / eyes
+        const visorGeo = new THREE.BoxGeometry(0.36, 0.08, 0.2);
+        const visor = new THREE.Mesh(visorGeo, neonTrimMat);
+        visor.position.set(0, 2.12, 0.24);
+        characterGroup.add(visor);
+
+        // Arms & Streetwear Sleeves
+        const leftArm = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.16, 1.1, 8), jacketMat);
+        leftArm.position.set(-0.62, 1.1, 0.1);
+        leftArm.rotation.z = 0.25;
+        leftArm.rotation.x = -0.3;
+        characterGroup.add(leftArm);
+
+        const rightArm = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.16, 1.1, 8), jacketMat);
+        rightArm.position.set(0.62, 1.1, 0.1);
+        rightArm.rotation.z = -0.25;
+        rightArm.rotation.x = -0.3;
+        characterGroup.add(rightArm);
+
+        // Hands with skin
+        const leftHand = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 8), skinMat);
+        leftHand.position.set(-0.8, 0.6, 0.35);
+        characterGroup.add(leftHand);
+
+        const rightHand = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 8), skinMat);
+        rightHand.position.set(0.8, 0.6, 0.35);
+        characterGroup.add(rightHand);
+
+        // Legs / Dark Techwear Trousers
+        const leftLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.14, 1.2, 8), jacketMat);
+        leftLeg.position.set(-0.25, -0.05, 0);
+        characterGroup.add(leftLeg);
+
+        const rightLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.14, 1.2, 8), jacketMat);
+        rightLeg.position.set(0.25, -0.05, 0);
+        characterGroup.add(rightLeg);
+
+        // 7. Cursed Energy Orbs & Particle Rings around hands
+        const energyGeo = new THREE.SphereGeometry(0.15, 12, 12);
+        const energyMat = new THREE.MeshBasicMaterial({
+          color: 0x38BDF8,
+          wireframe: true
+        });
+        leftHandEnergy = new THREE.Mesh(energyGeo, energyMat);
+        leftHandEnergy.position.copy(leftHand.position);
+        characterGroup.add(leftHandEnergy);
+
+        const purpleEnergyMat = new THREE.MeshBasicMaterial({
+          color: 0x8B5CF6,
+          wireframe: true
+        });
+        rightHandEnergy = new THREE.Mesh(energyGeo, purpleEnergyMat);
+        rightHandEnergy.position.copy(rightHand.position);
+        characterGroup.add(rightHandEnergy);
+
+        // Energy Aura Halo Ring (Domain Expansion motif)
+        const auraRingGeo = new THREE.TorusGeometry(1.4, 0.03, 8, 32);
+        const auraRingMat = new THREE.MeshBasicMaterial({
+          color: 0x8B5CF6,
+          transparent: true,
+          opacity: 0.7
+        });
+        auraGroup = new THREE.Mesh(auraRingGeo, auraRingMat);
+        auraGroup.position.set(0, 1.3, 0);
+        characterGroup.add(auraGroup);
+
+        // Position character gracefully on right side of hero section
+        characterGroup.position.set(1.6, -0.2, 1.5);
+        characterGroup.rotation.y = -0.35; // Facing subtly toward visitor
+        scene.add(characterGroup);
+
+        // 8. Sakura Petals Floating 3D Particle System
+        const petalCanvas = document.createElement("canvas");
+        petalCanvas.width = 32;
+        petalCanvas.height = 32;
+        const pctx = petalCanvas.getContext("2d");
+        pctx.fillStyle = "#F9A8D4";
+        pctx.beginPath();
+        pctx.ellipse(16, 16, 14, 8, Math.PI / 4, 0, Math.PI * 2);
+        pctx.fill();
+
+        const petalTexture = new THREE.CanvasTexture(petalCanvas);
+        const petalGeo = new THREE.PlaneGeometry(0.2, 0.15);
+        const petalMat = new THREE.MeshBasicMaterial({
+          map: petalTexture,
+          transparent: true,
+          opacity: 0.85,
+          side: THREE.DoubleSide
+        });
+
+        const petalCount = 85;
+        for (let p = 0; p < petalCount; p++) {
+          const petal = new THREE.Mesh(petalGeo, petalMat);
+          petal.position.set(
+            (Math.random() - 0.5) * 16,
+            Math.random() * 8 - 1,
+            (Math.random() - 0.5) * 12
+          );
+          petal.rotation.set(
+            Math.random() * Math.PI,
+            Math.random() * Math.PI,
+            Math.random() * Math.PI
+          );
+          petal.userData = {
+            vx: -0.015 - Math.random() * 0.02,
+            vy: -0.008 - Math.random() * 0.015,
+            vz: (Math.random() - 0.5) * 0.01,
+            rotSpeedX: (Math.random() - 0.5) * 0.04,
+            rotSpeedY: (Math.random() - 0.5) * 0.04
+          };
+          scene.add(petal);
+          sakuraPetalsMesh.push(petal);
+        }
+
+        // Mouse Parallax listener
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("resize", onWindowResize);
+
+        // Start Three.js Animation Loop
+        requestAnimationFrame(renderThree);
+      }
+
+      function onMouseMove(e) {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+      }
+
+      function onWindowResize() {
+        if (!camera || !renderer) return;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Adaptive scaling for mobile devices
+        if (window.innerWidth < 820 && characterGroup) {
+          characterGroup.position.set(0, -0.6, 0.5); // Center character on mobile
+          characterGroup.scale.set(0.85, 0.85, 0.85);
+        } else if (characterGroup) {
+          characterGroup.position.set(1.6, -0.2, 1.5);
+          characterGroup.scale.set(1, 1, 1);
+        }
+      }
+
+      // Check initially for mobile layout
+      if (window.innerWidth < 820 && characterGroup) {
+        characterGroup.position.set(0, -0.6, 0.5);
+        characterGroup.scale.set(0.85, 0.85, 0.85);
+      }
+
+      // Main Three.js Render Loop
+      function renderThree() {
+        requestAnimationFrame(renderThree);
+
+        const elapsedTime = clock ? clock.getElapsedTime() : 0;
+
+        // 1. Idle breathing & subtle character animations
+        if (characterGroup) {
+          // Gentle breathing (bobbing & slight chest dilation)
+          characterGroup.position.y = (window.innerWidth < 820 ? -0.6 : -0.2) + Math.sin(elapsedTime * 2) * 0.025;
+          
+          // Smoothly track mouse cursor with character's upper body / head
+          characterGroup.rotation.y = -0.35 + mouseX * 0.2;
+
+          // Energy hand orbs pulsating & rotating
+          if (leftHandEnergy && rightHandEnergy) {
+            leftHandEnergy.rotation.x += 0.03;
+            leftHandEnergy.rotation.y += 0.04;
+            const energyScale1 = 1 + Math.sin(elapsedTime * 6) * 0.2;
+            leftHandEnergy.scale.set(energyScale1, energyScale1, energyScale1);
+
+            rightHandEnergy.rotation.x -= 0.03;
+            rightHandEnergy.rotation.y += 0.04;
+            const energyScale2 = 1 + Math.cos(elapsedTime * 6) * 0.2;
+            rightHandEnergy.scale.set(energyScale2, energyScale2, energyScale2);
+          }
+
+          // Cursed Aura Ring spin
+          if (auraGroup) {
+            auraGroup.rotation.z = elapsedTime * 0.6;
+            auraGroup.rotation.x = Math.sin(elapsedTime * 0.8) * 0.2;
+          }
+        }
+
+        // 2. Sakura Petals fluttering drift
+        sakuraPetalsMesh.forEach(petal => {
+          petal.position.x += petal.userData.vx;
+          petal.position.y += petal.userData.vy;
+          petal.position.z += petal.userData.vz;
+
+          petal.rotation.x += petal.userData.rotSpeedX;
+          petal.rotation.y += petal.userData.rotSpeedY;
+
+          // Reset when fallen below scene
+          if (petal.position.y < -3) {
+            petal.position.y = 7;
+            petal.position.x = 8 + (Math.random() - 0.5) * 4;
+          }
+          if (petal.position.x < -10) {
+            petal.position.x = 8;
+          }
+        });
+
+        // 3. Smooth Camera Parallax
+        targetCameraX = mouseX * 0.6;
+        targetCameraY = 1.8 + mouseY * 0.3;
+        camera.position.x += (targetCameraX - camera.position.x) * 0.04;
+        camera.position.y += (targetCameraY - camera.position.y) * 0.04;
+        camera.lookAt(0, 1.3, 0);
+
+        renderer.render(scene, camera);
+      }
+
+      /* ==========================================================================
+         CANVAS 2D GRACEFUL FALLBACK (If WebGL is unavailable)
+         ========================================================================== */
+      function initCanvasFallback() {
+        if (!canvasFallback) return;
+        canvasFallback.style.display = "block";
+        const fctx = canvasFallback.getContext("2d");
+        let fw = (canvasFallback.width = window.innerWidth);
+        let fh = (canvasFallback.height = window.innerHeight);
+
+        const petals2D = [];
+        for (let i = 0; i < 40; i++) {
+          petals2D.push({
+            x: Math.random() * fw,
+            y: Math.random() * fh,
+            size: Math.random() * 8 + 4,
+            vx: -Math.random() * 1.5 - 0.5,
+            vy: Math.random() * 1.2 + 0.6,
+            angle: Math.random() * Math.PI
+          });
+        }
+
+        function draw2DFallback() {
+          fctx.clearRect(0, 0, fw, fh);
+
+          // Sunset Gradient
+          const bgGrad = fctx.createLinearGradient(0, 0, 0, fh);
+          bgGrad.addColorStop(0, "#080814");
+          bgGrad.addColorStop(0.5, "#25143A");
+          bgGrad.addColorStop(0.8, "#FF6B4A");
+          bgGrad.addColorStop(1, "#F9A8D4");
+          fctx.fillStyle = bgGrad;
+          fctx.fillRect(0, 0, fw, fh);
+
+          // Mountain Silhouettes
+          fctx.fillStyle = "#110E24";
+          fctx.beginPath();
+          fctx.moveTo(0, fh * 0.7);
+          fctx.lineTo(fw * 0.25, fh * 0.5);
+          fctx.lineTo(fw * 0.5, fh * 0.75);
+          fctx.lineTo(fw * 0.8, fh * 0.45);
+          fctx.lineTo(fw, fh * 0.7);
+          fctx.lineTo(fw, fh);
+          fctx.lineTo(0, fh);
+          fctx.fill();
+
+          // Petals
+          fctx.fillStyle = "rgba(249, 168, 212, 0.75)";
+          petals2D.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            p.angle += 0.02;
+
+            if (p.y > fh) p.y = -10;
+            if (p.x < 0) p.x = fw + 10;
+
+            fctx.save();
+            fctx.translate(p.x, p.y);
+            fctx.rotate(p.angle);
+            fctx.beginPath();
+            fctx.ellipse(0, 0, p.size, p.size * 0.5, 0, 0, Math.PI * 2);
+            fctx.fill();
+            fctx.restore();
+          });
+
+          requestAnimationFrame(draw2DFallback);
+        }
+
+        requestAnimationFrame(draw2DFallback);
+
+        window.addEventListener("resize", () => {
+          fw = canvasFallback.width = window.innerWidth;
+          fh = canvasFallback.height = window.innerHeight;
+        });
+      }
+
+      /* ==========================================================================
+         PROCEDURAL PREVIEW CANVASES FOR PROJECT CARDS
+         ========================================================================== */
+      function initProjectCanvases() {
+        // Project 1: Kisan Label (AI Vision scanning agriculture motif)
+        const c1 = document.getElementById("project-canvas-1");
+        if (c1) {
+          const ctx1 = c1.getContext("2d");
+          c1.width = 400;
+          c1.height = 220;
+          
+          let scanY = 0;
+          function animC1() {
+            ctx1.fillStyle = "#0A0918";
+            ctx1.fillRect(0, 0, 400, 220);
+
+            // Leaf outline & bounding boxes
+            ctx1.strokeStyle = "rgba(56, 189, 248, 0.4)";
+            ctx1.lineWidth = 1.5;
+            ctx1.strokeRect(60, 40, 280, 140);
+
+            // Mock pesticide label text bars
+            ctx1.fillStyle = "rgba(255, 255, 255, 0.2)";
+            ctx1.fillRect(90, 70, 220, 12);
+            ctx1.fillRect(90, 95, 180, 8);
+            ctx1.fillRect(90, 115, 200, 8);
+
+            // Hazard warning glyph
+            ctx1.fillStyle = "#FF8A5B";
+            ctx1.beginPath();
+            ctx1.arc(290, 105, 14, 0, Math.PI * 2);
+            ctx1.fill();
+
+            // Animated Laser Scanline
+            scanY = (scanY + 1.2) % 140;
+            ctx1.strokeStyle = "#38BDF8";
+            ctx1.lineWidth = 2;
+            ctx1.beginPath();
+            ctx1.moveTo(60, 40 + scanY);
+            ctx1.lineTo(340, 40 + scanY);
+            ctx1.stroke();
+
+            // Label
+            ctx1.font = "12px Orbitron, monospace";
+            ctx1.fillStyle = "#38BDF8";
+            ctx1.fillText("AI VISION LABEL DETECT: 98.4%", 90, 160);
+
+            requestAnimationFrame(animC1);
+          }
+          requestAnimationFrame(animC1);
+        }
+
+        // Project 2: 3D Battlegrounds (Procedural 3D wireframe arena)
+        const c2 = document.getElementById("project-canvas-2");
+        if (c2) {
+          const ctx2 = c2.getContext("2d");
+          c2.width = 400;
+          c2.height = 220;
+          let offset = 0;
+
+          function animC2() {
+            ctx2.fillStyle = "#090815";
+            ctx2.fillRect(0, 0, 400, 220);
+
+            offset = (offset + 1) % 25;
+
+            // Perspective Grid floor
+            ctx2.strokeStyle = "rgba(139, 92, 246, 0.35)";
+            ctx2.lineWidth = 1;
+
+            // Vertical rays vanishing to center horizon
+            for (let x = -200; x <= 600; x += 40) {
+              ctx2.beginPath();
+              ctx2.moveTo(200, 80);
+              ctx2.lineTo(x, 220);
+              ctx2.stroke();
+            }
+
+            // Horizontal receding lines
+            for (let y = 80; y < 220; y += 15) {
+              const currentY = y + (offset * (y - 80) / 140);
+              if (currentY <= 220) {
+                ctx2.beginPath();
+                ctx2.moveTo(0, currentY);
+                ctx2.lineTo(400, currentY);
+                ctx2.stroke();
+              }
+            }
+
+            // Player Combat Reticle
+            ctx2.strokeStyle = "#FF8A5B";
+            ctx2.lineWidth = 2;
+            ctx2.beginPath();
+            ctx2.arc(200, 80, 22, 0, Math.PI * 2);
+            ctx2.stroke();
+
+            ctx2.font = "11px Orbitron, monospace";
+            ctx2.fillStyle = "#FF8A5B";
+            ctx2.fillText("ARENA: THREE.JS COMBAT HUD", 100, 45);
+
+            requestAnimationFrame(animC2);
+          }
+          requestAnimationFrame(animC2);
+        }
+
+        // Project 3: Personal Portfolio (Procedural Kanji Domain Expansion Seal)
+        const c3 = document.getElementById("project-canvas-3");
+        if (c3) {
+          const ctx3 = c3.getContext("2d");
+          c3.width = 400;
+          c3.height = 220;
+          let sealRot = 0;
+
+          function animC3() {
+            ctx3.fillStyle = "#070712";
+            ctx3.fillRect(0, 0, 400, 220);
+
+            sealRot += 0.015;
+
+            ctx3.save();
+            ctx3.translate(200, 110);
+            ctx3.rotate(sealRot);
+
+            // Ring
+            ctx3.strokeStyle = "rgba(139, 92, 246, 0.6)";
+            ctx3.lineWidth = 2;
+            ctx3.beginPath();
+            ctx3.arc(0, 0, 55, 0, Math.PI * 2);
+            ctx3.stroke();
+
+            // Inner dashed ring
+            ctx3.strokeStyle = "#38BDF8";
+            ctx3.setLineDash([6, 6]);
+            ctx3.beginPath();
+            ctx3.arc(0, 0, 42, 0, Math.PI * 2);
+            ctx3.stroke();
+            ctx3.setLineDash([]);
+
+            ctx3.restore();
+
+            // Center Kanji
+            ctx3.font = "28px 'Noto Sans JP', sans-serif";
+            ctx3.fillStyle = "#FFFFFF";
+            ctx3.textAlign = "center";
+            ctx3.textBaseline = "middle";
+            ctx3.fillText("領域", 200, 110);
+
+            requestAnimationFrame(animC3);
+          }
+          requestAnimationFrame(animC3);
+        }
+
+        // Project 4: Future AI (Pulsing Brain / Neural Cluster)
+        const c4 = document.getElementById("project-canvas-4");
+        if (c4) {
+          const ctx4 = c4.getContext("2d");
+          c4.width = 400;
+          c4.height = 220;
+          let pulse = 0;
+
+          function animC4() {
+            ctx4.fillStyle = "#090818";
+            ctx4.fillRect(0, 0, 400, 220);
+
+            pulse += 0.04;
+            const nodes = [
+              {x: 140, y: 80}, {x: 170, y: 130}, {x: 230, y: 130},
+              {x: 260, y: 80}, {x: 200, y: 70}, {x: 200, y: 155}
+            ];
+
+            // Connect nodes
+            ctx4.strokeStyle = "rgba(56, 189, 248, 0.3)";
+            ctx4.lineWidth = 1.5;
+            for (let i = 0; i < nodes.length; i++) {
+              for (let j = i + 1; j < nodes.length; j++) {
+                ctx4.beginPath();
+                ctx4.moveTo(nodes[i].x, nodes[i].y);
+                ctx4.lineTo(nodes[j].x, nodes[j].y);
+                ctx4.stroke();
+              }
+            }
+
+            // Draw Pulsing Nodes
+            nodes.forEach((n, idx) => {
+              const r = 4 + Math.sin(pulse + idx) * 2;
+              ctx4.fillStyle = idx % 2 === 0 ? "#8B5CF6" : "#38BDF8";
+              ctx4.beginPath();
+              ctx4.arc(n.x, n.y, r, 0, Math.PI * 2);
+              ctx4.fill();
+            });
+
+            ctx4.font = "11px Orbitron, monospace";
+            ctx4.fillStyle = "#F9A8D4";
+            ctx4.fillText("R&D: NEURAL ARCHITECTURES", 95, 195);
+
+            requestAnimationFrame(animC4);
+          }
+          requestAnimationFrame(animC4);
+        }
+      }
+      initProjectCanvases();
+
+      /* ==========================================================================
+         HOLOGRAPHIC NEURAL NETWORK CANVAS (AI/ML SECTION)
+         ========================================================================== */
+      const neuralCanvas = document.getElementById("neural-net-canvas");
+      if (neuralCanvas) {
+        const nctx = neuralCanvas.getContext("2d");
+        let nw = (neuralCanvas.width = 480);
+        let nh = (neuralCanvas.height = 380);
+
+        const layers = [4, 6, 6, 3];
+        const nodes = [];
+        const xStep = nw / (layers.length + 1);
+
+        layers.forEach((count, lIdx) => {
+          const yStep = nh / (count + 1);
+          for (let i = 0; i < count; i++) {
+            nodes.push({
+              x: xStep * (lIdx + 1),
+              y: yStep * (i + 1),
+              layer: lIdx,
+              baseRadius: 5,
+              pulseOffset: Math.random() * Math.PI * 2
+            });
+          }
+        });
+
+        let nTime = 0;
+        function animNeuralNet() {
+          nctx.clearRect(0, 0, nw, nh);
+          nTime += 0.03;
+
+          // Draw Synapses
+          for (let a of nodes) {
+            for (let b of nodes) {
+              if (b.layer === a.layer + 1) {
+                const signal = Math.sin(nTime * 3 + a.x * 0.05);
+                const alpha = Math.max(0.1, (signal + 1) * 0.25);
+                
+                nctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`;
+                nctx.lineWidth = 1;
+                nctx.beginPath();
+                nctx.moveTo(a.x, a.y);
+                nctx.lineTo(b.x, b.y);
+                nctx.stroke();
+
+                // Signal packet traveling along synapse
+                if (signal > 0.7) {
+                  const t = (signal - 0.7) / 0.3;
+                  const px = a.x + (b.x - a.x) * t;
+                  const py = a.y + (b.y - a.y) * t;
+                  nctx.fillStyle = "#38BDF8";
+                  nctx.beginPath();
+                  nctx.arc(px, py, 2.5, 0, Math.PI * 2);
+                  nctx.fill();
+                }
+              }
+            }
+          }
+
+          // Draw Nodes
+          for (let node of nodes) {
+            const r = node.baseRadius + Math.sin(nTime * 2 + node.pulseOffset) * 2;
+            nctx.beginPath();
+            nctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+            nctx.fillStyle = node.layer === layers.length - 1 ? "#FF8A5B" : (node.layer === 0 ? "#38BDF8" : "#8B5CF6");
+            nctx.shadowColor = "#8B5CF6";
+            nctx.shadowBlur = 10;
+            nctx.fill();
+            nctx.shadowBlur = 0;
+          }
+
+          requestAnimationFrame(animNeuralNet);
+        }
+        requestAnimationFrame(animNeuralNet);
+      }
+
+      /* ==========================================================================
+         BEYOND CODING CANVASES: EQUALIZER & CREATIVITY
+         ========================================================================== */
+      // 1. Equalizer Canvas
+      const eqCanvas = document.getElementById("equalizer-canvas");
+      if (eqCanvas) {
+        const eqCtx = eqCanvas.getContext("2d");
+        const barCount = 28;
+        let eqTime = 0;
+
+        function animEqualizer() {
+          const w = (eqCanvas.width = eqCanvas.offsetWidth || 340);
+          const h = (eqCanvas.height = eqCanvas.offsetHeight || 120);
+          eqCtx.clearRect(0, 0, w, h);
+          eqTime += 0.06;
+
+          const barWidth = (w / barCount) - 4;
+          for (let i = 0; i < barCount; i++) {
+            // Natural looking audio visualizer bars
+            const barHeight = Math.abs(Math.sin(eqTime + i * 0.4) * Math.cos(eqTime * 0.5 + i * 0.2)) * (h - 20) + 12;
+            const x = i * (barWidth + 4);
+            const y = h - barHeight;
+
+            const grad = eqCtx.createLinearGradient(0, y, 0, h);
+            grad.addColorStop(0, "#38BDF8");
+            grad.addColorStop(0.5, "#8B5CF6");
+            grad.addColorStop(1, "#FF8A5B");
+
+            eqCtx.fillStyle = grad;
+            eqCtx.fillRect(x, y, barWidth, barHeight);
+          }
+          requestAnimationFrame(animEqualizer);
+        }
+        requestAnimationFrame(animEqualizer);
+      }
+
+      // 2. Creativity Canvas (Rotating Idea Prism / Spark particles)
+      const creatCanvas = document.getElementById("creativity-canvas");
+      if (creatCanvas) {
+        const cctx = creatCanvas.getContext("2d");
+        let cTime = 0;
+
+        function animCreativity() {
+          const w = (creatCanvas.width = creatCanvas.offsetWidth || 340);
+          const h = (creatCanvas.height = creatCanvas.offsetHeight || 120);
+          cctx.clearRect(0, 0, w, h);
+          cTime += 0.03;
+
+          const cx = w / 2;
+          const cy = h / 2;
+
+          // Rotating Prism polygon
+          cctx.save();
+          cctx.translate(cx, cy);
+          cctx.rotate(cTime);
+
+          cctx.strokeStyle = "#8B5CF6";
+          cctx.lineWidth = 2;
+          cctx.strokeRect(-25, -25, 50, 50);
+
+          cctx.rotate(Math.PI / 4 + cTime);
+          cctx.strokeStyle = "#38BDF8";
+          cctx.strokeRect(-20, -20, 40, 40);
+
+          cctx.restore();
+
+          // Floating idea sparks
+          for (let s = 0; s < 6; s++) {
+            const angle = cTime * 2 + (s * Math.PI / 3);
+            const dist = 38 + Math.sin(cTime * 3 + s) * 12;
+            const sx = cx + Math.cos(angle) * dist;
+            const sy = cy + Math.sin(angle) * dist;
+
+            cctx.fillStyle = s % 2 === 0 ? "#F9A8D4" : "#FF8A5B";
+            cctx.beginPath();
+            cctx.arc(sx, sy, 3, 0, Math.PI * 2);
+            cctx.fill();
+          }
+
+          requestAnimationFrame(animCreativity);
+        }
+        requestAnimationFrame(animCreativity);
+      }
+
+      /* ==========================================================================
+         DEVELOPER TERMINAL COMMAND ENGINE
+         ========================================================================== */
+      const terminalScreen = document.getElementById("terminal-screen");
+      const terminalInput = document.getElementById("terminal-cli-input");
+      const terminalActiveRow = document.getElementById("terminal-active-row");
+      const termCmdButtons = document.querySelectorAll(".term-cmd-btn");
+
+      const terminalCommands = {
+        help: function () {
+          return [
+            "<span class='term-purple'>================ AVAILABLE COMMANDS ================</span>",
+            "<span class='term-green'>about</span>      : Read Prince's origin story, bio, and vision",
+            "<span class='term-green'>skills</span>     : Inspect technical technique arsenal (Languages, Tools, AI)",
+            "<span class='term-green'>projects</span>   : Display completed missions (Kisan Label, 3D Game, Portfolio)",
+            "<span class='term-green'>education</span>  : Show degree details at Newton School of Technology",
+            "<span class='term-green'>journey</span>    : AI/ML academic progression roadmap",
+            "<span class='term-green'>hobbies</span>    : Creative pursuits (Music & Ideas)",
+            "<span class='term-green'>github</span>     : Open official GitHub profile (https://github.com/PrinceVerma44)",
+            "<span class='term-green'>linkedin</span>   : Open official LinkedIn profile",
+            "<span class='term-green'>email</span>      : Dispatch email to vermaprinceramjanak@gmail.com",
+            "<span class='term-green'>whoami</span>     : Identify authenticated operator credentials",
+            "<span class='term-green'>domain</span>     : Recite the Domain Expansion brand decree",
+            "<span class='term-green'>clear</span>      : Purge terminal console output",
+            "<span class='term-purple'>====================================================</span>"
+          ];
+        },
+        about: function () {
+          return [
+            "<span class='term-blue'>[ IDENTITY: PRINCE VERMA ]</span>",
+            "First-year B.Tech Computer Science Engineering student specializing in AI & ML at Newton School of Technology (in collaboration with Ajeenkya DY Patil University).",
+            "Passion: Programming, creative web development, building impactful AI tools, and turning ideas into tangible reality."
+          ];
+        },
+        skills: function () {
+          return [
+            "<span class='term-orange'>[ TECHNIQUE ARSENAL ]</span>",
+            "• Languages: Python, JavaScript, HTML5, CSS3",
+            "• Developer Tools: Git, GitHub, Command Line Interface (CLI)",
+            "• Expanding Horizons: Artificial Intelligence, Machine Learning, DSA, Three.js & WebGL"
+          ];
+        },
+        projects: function () {
+          return [
+            "<span class='term-purple'>[ MISSION LOG ]</span>",
+            "01. <strong class='term-white'>KISAN LABEL</strong>: AI-powered pesticide label explainer for Indian farmers.",
+            "02. <strong class='term-white'>3D BATTLEGROUNDS</strong>: Three.js browser combat arena with procedural physics.",
+            "03. <strong class='term-white'>THE DEVELOPER'S DOMAIN</strong>: 3D anime portfolio with zero-dependency standalone execution.",
+            "04. <strong class='term-white'>FUTURE AI LAB</strong>: Ongoing machine learning and neural architecture experiments."
+          ];
+        },
+        education: function () {
+          return [
+            "<span class='term-blue'>[ THE ACADEMY ]</span>",
+            "• Institution: Newton School of Technology",
+            "• University: Ajeenkya DY Patil University",
+            "• Degree: Bachelor of Technology (B.Tech)",
+            "• Specialization: Artificial Intelligence & Machine Learning",
+            "• Year: First Year (Class of 2029)"
+          ];
+        },
+        journey: function () {
+          return [
+            "<span class='term-pink'>[ COGNITIVE HORIZON: AI/ML PATH ]</span>",
+            "Phase 1: Inception & Core Foundations",
+            "Phase 2: Advanced Python & Algorithmic Thinking",
+            "Phase 3: Interactive 3D Web & Assistive Tools",
+            "Phase 4: Mathematical Foundations of ML & Neural Modeling"
+          ];
+        },
+        hobbies: function () {
+          return [
+            "<span class='term-purple'>[ BEYOND THE DIGITAL WORLD ]</span>",
+            "• MUSIC: Expressing creativity through music, rhythm, and relaxing frequencies.",
+            "• CREATIVITY: Finding innovative avenues to bring imaginative concepts to life."
+          ];
+        },
+        github: function () {
+          window.open("https://github.com/PrinceVerma44", "_blank");
+          return ["<span class='term-green'>✓ Launching GitHub profile:</span> https://github.com/PrinceVerma44"];
+        },
+        linkedin: function () {
+          window.open("https://www.linkedin.com/in/prince-verma-648717440/", "_blank");
+          return ["<span class='term-green'>✓ Launching LinkedIn profile:</span> https://www.linkedin.com/in/prince-verma-648717440/"];
+        },
+        email: function () {
+          window.location.href = "mailto:vermaprinceramjanak@gmail.com";
+          return ["<span class='term-green'>✓ Initializing mail protocol for:</span> vermaprinceramjanak@gmail.com"];
+        },
+        whoami: function () {
+          return ["visitor@prince-verma-domain [Operator: Guest Explorer | Permissions: Read-Only]"];
+        },
+        domain: function () {
+          return [
+            "<span class='term-pink'>『 領域展開: 創作家の領域 』</span>",
+            "<strong class='term-white'>\"I AM PRINCE VERMA. I AM LEARNING, BUILDING, EXPERIMENTING, AND CREATING MY OWN DOMAIN IN THE WORLD OF TECHNOLOGY.\"</strong>"
+          ];
+        },
+        clear: function () {
+          // Clears console
+          const lines = terminalScreen.querySelectorAll(".terminal-output-line");
+          lines.forEach(l => l.remove());
+          return [];
+        }
+      };
+
+      function executeCommand(rawCmd) {
+        const cmd = rawCmd.trim().toLowerCase();
+        
+        // Echo input command
+        const echoLine = document.createElement("div");
+        echoLine.className = "terminal-output-line";
+        echoLine.innerHTML = `<span class="terminal-prompt">visitor@prince:~$</span> <span class="term-white">${escapeHtml(rawCmd)}</span>`;
+        terminalScreen.insertBefore(echoLine, terminalActiveRow);
+
+        if (cmd === "") return;
+
+        if (terminalCommands[cmd]) {
+          const results = terminalCommands[cmd]();
+          results.forEach(res => {
+            const outLine = document.createElement("div");
+            outLine.className = "terminal-output-line";
+            outLine.innerHTML = res;
+            terminalScreen.insertBefore(outLine, terminalActiveRow);
+          });
+        } else {
+          const errorLine = document.createElement("div");
+          errorLine.className = "terminal-output-line term-orange";
+          errorLine.innerHTML = `command not found: '${escapeHtml(cmd)}'. Type <span class='term-green'>'help'</span> for list of valid commands.`;
+          terminalScreen.insertBefore(errorLine, terminalActiveRow);
+        }
+
+        // Scroll to bottom
+        terminalScreen.scrollTop = terminalScreen.scrollHeight;
+      }
+
+      function escapeHtml(text) {
+        return text.replace(/[&<>"']/g, function (m) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+        });
+      }
+
+      terminalInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          const val = terminalInput.value;
+          executeCommand(val);
+          terminalInput.value = "";
+        }
+      });
+
+      termCmdButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const cmd = btn.getAttribute("data-cmd");
+          executeCommand(cmd);
+          terminalInput.focus();
+        });
+      });
+
+      /* ==========================================================================
+         CONTACT FORM WORKFLOW (Pre-filled mailto dispatch)
+         ========================================================================== */
+      const contactForm = document.getElementById("contact-form");
+      if (contactForm) {
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("contact-name").value.trim();
+          const email = document.getElementById("contact-email").value.trim();
+          const subject = document.getElementById("contact-subject").value.trim();
+          const message = document.getElementById("contact-message").value.trim();
+
+          const formattedSubject = encodeURIComponent(`[Portfolio Transmission] ${subject} - from ${name}`);
+          const formattedBody = encodeURIComponent(
+            `Sender Name: ${name}\nSender Email: ${email}\n\nMessage:\n${message}\n\n-- Sent via Prince Verma's Domain Portfolio`
+          );
+
+          window.location.href = `mailto:vermaprinceramjanak@gmail.com?subject=${formattedSubject}&body=${formattedBody}`;
+        });
+      }
+
+      /* ==========================================================================
+         MODALS LOGIC: RESUME & PROJECT DOSSIERS
+         ========================================================================== */
+      const resumeModal = document.getElementById("resume-modal");
+      const openResumeBtn = document.getElementById("open-resume-btn");
+      const closeResumeModalBtn = document.getElementById("close-resume-modal-btn");
+      const closeResumeBottomBtn = document.getElementById("close-resume-bottom-btn");
+      const printResumeBtn = document.getElementById("print-resume-btn");
+
+      function openResume() {
+        resumeModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+        if (window.gsap) {
+          gsap.fromTo(resumeModal.querySelector(".modal-window"), 
+            { scale: 0.88, opacity: 0, y: 20 }, 
+            { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.4)" }
+          );
+        }
+      }
+
+      function closeResume() {
+        resumeModal.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      if (openResumeBtn) openResumeBtn.addEventListener("click", openResume);
+      if (closeResumeModalBtn) closeResumeModalBtn.addEventListener("click", closeResume);
+      if (closeResumeBottomBtn) closeResumeBottomBtn.addEventListener("click", closeResume);
+      if (printResumeBtn) {
+        printResumeBtn.addEventListener("click", () => {
+          window.print();
+        });
+      }
+
+      resumeModal.addEventListener("click", (e) => {
+        if (e.target === resumeModal) closeResume();
+      });
+
+      // Project Detail Modal
+      const projectModal = document.getElementById("project-modal");
+      const projectModalContent = document.getElementById("project-modal-content");
+      const closeProjectModalBtn = document.getElementById("close-project-modal-btn");
+      const openProjectDetailButtons = document.querySelectorAll(".open-project-detail-btn");
+
+      const projectDetailsData = {
+        kisan: {
+          title: "PROJECT 01: KISAN LABEL",
+          category: "AI / Social Impact / Assistive Agriculture",
+          desc: "Kisan Label is an assistive technology solution addressing a vital problem across Indian farming communities: complex, high-risk chemical pesticide instructions written in dense language. The application processes pesticide label images, extracts vital dosage calculations, and translates safety warnings into accessible terms.",
+          features: [
+            "Pesticide label reading and optical layout extraction",
+            "Plain-language explanation of complex chemical ratios",
+            "Clear hazard and emergency first-aid protocols",
+            "High-contrast, farmer-friendly interface designed for rural mobile screens"
+          ],
+          tech: ["Python", "Computer Vision Concepts", "Accessible Web UI", "AgTech Ethics"],
+          github: "https://github.com/PrinceVerma44"
+        },
+        battlegrounds: {
+          title: "PROJECT 02: 3D BATTLEGROUNDS",
+          category: "Interactive 3D Game / Three.js / WebGL",
+          desc: "A browser-based 3D combat arena inspired by modern tactical games. Built to explore procedural geometry, real-time lighting shaders, third-person camera physics, and performant collision detection directly in Chrome without plugins.",
+          features: [
+            "Interactive 3D arena running at 60 FPS",
+            "Responsive character translation & camera orbiting controls",
+            "Hitbox detection and combat action mechanics",
+            "Procedural arena textures and atmospheric lighting"
+          ],
+          tech: ["Three.js", "WebGL", "Vanilla JavaScript", "Matrix Math"],
+          github: "https://github.com/PrinceVerma44"
+        },
+        portfolio: {
+          title: "PROJECT 03: THE DEVELOPER'S DOMAIN",
+          category: "3D Anime Portfolio / Creative Web Engineering",
+          desc: "The complete personal portfolio of Prince Verma. Built to function as an anime protagonist's personal domain while maintaining strict production engineering standards: 100% self-contained single file, zero backend dependencies, and seamless direct file:// execution.",
+          features: [
+            "Procedural Japanese sunset sky & pagoda environment in Three.js",
+            "Original 3D anime developer character with breathing dynamics & cursed energy",
+            "Interactive CLI terminal with full command dispatch",
+            "Web Audio API ambient koto/synth generator without external MP3 files"
+          ],
+          tech: ["HTML5", "CSS3 Glassmorphism", "Three.js r128", "Web Audio API"],
+          github: "https://github.com/PrinceVerma44"
+        },
+        futureai: {
+          title: "PROJECT 04: FUTURE AI EXPERIMENTS",
+          category: "Artificial Intelligence / Machine Learning R&D",
+          desc: "Ongoing research prototypes and academic experiments conducted at Newton School of Technology. Investigating intelligent algorithmic copilots, accessibility visual tools, and fundamental neural network implementations.",
+          features: [
+            "Supervised learning model prototypes in Python",
+            "Synaptic neural network weight visualizations",
+            "Student academic productivity assistants",
+            "Foundational exploration of linear algebra and loss optimization"
+          ],
+          tech: ["Python", "NumPy", "Neural Architectures", "Academic Research"],
+          github: "https://github.com/PrinceVerma44"
+        }
+      };
+
+      function openProjectModal(key) {
+        const data = projectDetailsData[key];
+        if (!data) return;
+
+        projectModalContent.innerHTML = `
+          <div class="resume-header">
+            <span class="section-tag" style="font-size: 0.75rem;">${data.category}</span>
+            <h2 class="resume-name" style="margin-top: 0.5rem;">${data.title}</h2>
+          </div>
+          <div class="resume-section">
+            <h3 class="resume-section-title">MISSION OVERVIEW</h3>
+            <p style="color: var(--text-gray); line-height: 1.7; font-size: 0.95rem;">${data.desc}</p>
+          </div>
+          <div class="resume-section">
+            <h3 class="resume-section-title">KEY SPECIFICATIONS & CAPABILITIES</h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+              ${data.features.map(f => `<li style="font-size: 0.9rem; color: var(--text-white); display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--electric-blue);">⚡</span> ${f}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="resume-section">
+            <h3 class="resume-section-title">TECHNOLOGY STACK</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              ${data.tech.map(t => `<span class="tech-pill" style="border-color: var(--purple-light);">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="resume-actions" style="margin-top: 2rem;">
+            <a href="${data.github}" target="_blank" rel="noopener noreferrer" class="btn-domain" style="flex: 1; text-align: center; text-decoration: none;">
+              <span>Inspect on GitHub</span>
+              <span>🐙</span>
+            </a>
+            <button id="close-project-modal-bottom-btn" class="btn-domain btn-domain-alt" style="flex: 1;">
+              <span>Dismiss Dossier</span>
+            </button>
+          </div>
+        `;
+
+        projectModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+        if (window.gsap) {
+          gsap.fromTo(projectModal.querySelector(".modal-window"), 
+            { scale: 0.88, opacity: 0, y: 20 }, 
+            { scale: 1, opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.4)" }
+          );
+        }
+
+        const bottomClose = document.getElementById("close-project-modal-bottom-btn");
+        if (bottomClose) {
+          bottomClose.addEventListener("click", closeProjectModal);
+        }
+      }
+
+      function closeProjectModal() {
+        projectModal.classList.remove("active");
+        document.body.style.overflow = "auto";
+      }
+
+      openProjectDetailButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const projectKey = btn.getAttribute("data-project");
+          openProjectModal(projectKey);
+        });
+      });
+
+      if (closeProjectModalBtn) {
+        closeProjectModalBtn.addEventListener("click", closeProjectModal);
+      }
+
+      projectModal.addEventListener("click", (e) => {
+        if (e.target === projectModal) closeProjectModal();
+      });
+
+      // Escape key to close modals
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeResume();
+          closeProjectModal();
+        }
+      });
+
+      // GSAP Scroll-Triggered Card Reveals
+      if (window.IntersectionObserver) {
+        const scrollObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (window.gsap) {
+                gsap.fromTo(entry.target,
+                  { y: 24, opacity: 0 },
+                  { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }
+                );
+              }
+              scrollObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll(".anime-card, .skill-card, .project-card, .achievement-card, .beyond-card, .timeline-node").forEach(el => {
+          scrollObserver.observe(el);
+        });
+      }
+
+      console.log("%c⚡ PRINCE VERMA — THE DEVELOPER'S DOMAIN INITIALIZED ⚡", "color: #38BDF8; font-weight: bold; font-size: 14px;");
+      console.log("%cTurning curiosity into code, and ideas into reality.", "color: #8B5CF6; font-style: italic;");
+    })();
+  </script>
+</body>
+</html>
